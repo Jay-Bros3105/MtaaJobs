@@ -1,0 +1,4593 @@
+<!doctype html>
+<html lang="sw">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>MtaaJobs – Kazi Za Mtaani</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="shortcut icon" href="favcon.png" type="image/x-icon" />
+    <style>
+      :root {
+        --primary: #0066ff;
+        --primary-dark: #0044cc;
+        --primary-light: #e8f1ff;
+        --accent: #00c853;
+        --accent-dark: #00952e;
+        --urgent: #ff3b30;
+        --warning: #ff9500;
+        --dark: #0a0f1e;
+        --dark2: #111827;
+        --dark3: #1f2937;
+        --mid: #374151;
+        --muted: #6b7280;
+        --light: #9ca3af;
+        --border: #e5e7eb;
+        --surface: #f9fafb;
+        --white: #ffffff;
+        --card-shadow: 0 2px 16px rgba(0, 0, 0, 0.07);
+        --card-shadow-hover: 0 6px 28px rgba(0, 102, 255, 0.16);
+        --radius: 16px;
+        --radius-sm: 10px;
+        --font: "Plus Jakarta Sans", sans-serif;
+        --font2: "Space Grotesk", sans-serif;
+        --nav-h: 56px;
+        --bnav-h: 62px;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        -webkit-tap-highlight-color: transparent;
+      }
+      html {
+        font-size: 16px;
+      }
+      body {
+        font-family: var(--font);
+        background: #eef2ff;
+        color: var(--dark);
+        min-height: 100vh;
+        overflow-x: hidden;
+      }
+      ::-webkit-scrollbar {
+        width: 4px;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--primary);
+        border-radius: 2px;
+      }
+
+      /* ── TOPBAR ── */
+      .topbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 200;
+        background: var(--dark2);
+        height: var(--nav-h);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 14px;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
+      }
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        text-decoration: none;
+        flex-shrink: 0;
+      }
+      .logo-icon {
+        width: 34px;
+        height: 34px;
+        background: linear-gradient(135deg, var(--primary), var(--accent));
+        border-radius: 9px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+      }
+      .logo-text {
+        font-family: var(--font2);
+        font-size: 20px;
+        font-weight: 700;
+        color: #fff;
+      }
+      .logo-text span {
+        color: var(--accent);
+      }
+      .topbar-right {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .icon-btn {
+        background: rgba(255, 255, 255, 0.09);
+        border: none;
+        cursor: pointer;
+        width: 36px;
+        height: 36px;
+        border-radius: 9px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 17px;
+        position: relative;
+        flex-shrink: 0;
+      }
+      .notif-dot {
+        position: absolute;
+        top: 6px;
+        right: 6px;
+        width: 7px;
+        height: 7px;
+        background: var(--urgent);
+        border-radius: 50%;
+        border: 1.5px solid var(--dark2);
+      }
+      .avatar-btn {
+        width: 36px;
+        height: 36px;
+        border-radius: 9px;
+        background: linear-gradient(135deg, var(--primary), var(--accent));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-weight: 700;
+        font-size: 13px;
+        border: none;
+        cursor: pointer;
+        flex-shrink: 0;
+      }
+
+      /* ── BOTTOM NAV ── */
+      .bnav {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 200;
+        background: var(--dark2);
+        height: var(--bnav-h);
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-around;
+        padding-top: 8px;
+      }
+      .bnav-btn {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 3px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: var(--muted);
+        font-size: 10px;
+        font-family: var(--font);
+        font-weight: 600;
+        padding: 4px 8px;
+        border-radius: 8px;
+        min-width: 0;
+        flex: 1;
+      }
+      .bnav-btn .bi {
+        font-size: 20px;
+        line-height: 1;
+      }
+      .bnav-btn.active {
+        color: var(--accent);
+      }
+      .bnav-center {
+        width: 48px;
+        height: 48px;
+        background: linear-gradient(135deg, var(--primary), var(--accent));
+        border-radius: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 22px;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        flex-shrink: 0;
+        box-shadow: 0 4px 16px rgba(0, 102, 255, 0.45);
+        margin-top: -14px;
+      }
+
+      /* ── PAGE WRAPPER ── */
+      .page-wrap {
+        padding-top: calc(var(--nav-h) + 4px);
+        padding-bottom: calc(var(--bnav-h) + 8px);
+        min-height: 100vh;
+      }
+
+      /* ── SCREEN ── */
+      .screen {
+        display: none;
+        padding: 12px;
+      }
+      .screen.active {
+        display: block;
+      }
+
+      /* ── HERO ── */
+      .hero {
+        background: linear-gradient(135deg, var(--dark2) 0%, #0d2d6e 100%);
+        border-radius: var(--radius);
+        padding: 20px 18px;
+        margin-bottom: 14px;
+        position: relative;
+        overflow: hidden;
+      }
+      .hero::before {
+        content: "";
+        position: absolute;
+        top: -50px;
+        right: -50px;
+        width: 180px;
+        height: 180px;
+        background: radial-gradient(
+          circle,
+          rgba(0, 200, 83, 0.18),
+          transparent 70%
+        );
+        border-radius: 50%;
+      }
+      .hero-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        background: rgba(0, 200, 83, 0.15);
+        color: var(--accent);
+        font-size: 11px;
+        font-weight: 700;
+        padding: 3px 10px;
+        border-radius: 20px;
+        border: 1px solid rgba(0, 200, 83, 0.3);
+        margin-bottom: 10px;
+      }
+      .hero-title {
+        font-family: var(--font2);
+        font-size: 22px;
+        font-weight: 800;
+        color: #fff;
+        line-height: 1.25;
+        margin-bottom: 6px;
+      }
+      .hero-title span {
+        color: var(--accent);
+      }
+      .hero-sub {
+        color: rgba(255, 255, 255, 0.55);
+        font-size: 13px;
+        margin-bottom: 16px;
+      }
+      .search-bar {
+        display: flex;
+        gap: 8px;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 10px;
+        padding: 5px 5px 5px 12px;
+        align-items: center;
+      }
+      .search-bar input {
+        background: none;
+        border: none;
+        outline: none;
+        flex: 1;
+        color: #fff;
+        font-family: var(--font);
+        font-size: 13px;
+        min-width: 0;
+      }
+      .search-bar input::placeholder {
+        color: rgba(255, 255, 255, 0.38);
+      }
+      .search-btn {
+        background: var(--accent);
+        border: none;
+        cursor: pointer;
+        padding: 9px 16px;
+        border-radius: 8px;
+        color: #fff;
+        font-family: var(--font);
+        font-weight: 700;
+        font-size: 13px;
+        white-space: nowrap;
+        flex-shrink: 0;
+      }
+
+      /* ── AI BAR ── */
+      .ai-bar {
+        background: linear-gradient(135deg, #1e1b4b, #312e81);
+        border-radius: 10px;
+        padding: 12px 14px;
+        margin-bottom: 14px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        cursor: pointer;
+        border: 1px solid rgba(99, 102, 241, 0.3);
+      }
+      .ai-icon {
+        font-size: 24px;
+        flex-shrink: 0;
+      }
+      .ai-text {
+        flex: 1;
+        min-width: 0;
+      }
+      .ai-title {
+        font-size: 13px;
+        font-weight: 700;
+        color: #fff;
+      }
+      .ai-sub {
+        font-size: 11px;
+        color: rgba(255, 255, 255, 0.45);
+        margin-top: 2px;
+      }
+
+      /* ── STATS ── */
+      .stats-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        margin-bottom: 14px;
+      }
+      .stat-card {
+        background: #fff;
+        border-radius: var(--radius-sm);
+        padding: 14px 12px;
+        box-shadow: var(--card-shadow);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .stat-icon {
+        width: 42px;
+        height: 42px;
+        border-radius: 11px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        flex-shrink: 0;
+      }
+      .si-blue {
+        background: var(--primary-light);
+      }
+      .si-green {
+        background: rgba(0, 200, 83, 0.1);
+      }
+      .si-orange {
+        background: rgba(255, 149, 0, 0.1);
+      }
+      .si-red {
+        background: rgba(255, 59, 48, 0.1);
+      }
+      .stat-val {
+        font-family: var(--font2);
+        font-size: 18px;
+        font-weight: 700;
+        color: var(--dark);
+      }
+      .stat-lbl {
+        font-size: 11px;
+        color: var(--muted);
+        font-weight: 500;
+        margin-top: 1px;
+      }
+      .stat-chg {
+        font-size: 10px;
+        font-weight: 700;
+        color: var(--accent);
+        margin-top: 3px;
+      }
+
+      /* ── SECTION HEADER ── */
+      .sec-hdr {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 10px;
+      }
+      .sec-title {
+        font-family: var(--font2);
+        font-size: 16px;
+        font-weight: 700;
+        color: var(--dark);
+      }
+      .see-all {
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: var(--primary);
+        font-size: 12px;
+        font-weight: 700;
+        font-family: var(--font);
+        padding: 0;
+        white-space: nowrap;
+      }
+
+      /* ── FILTER TABS ── */
+      .ftabs {
+        display: flex;
+        gap: 7px;
+        margin-bottom: 12px;
+        overflow-x: auto;
+        padding-bottom: 4px;
+        -webkit-overflow-scrolling: touch;
+      }
+      .ftabs::-webkit-scrollbar {
+        display: none;
+      }
+      .ftab {
+        padding: 7px 14px;
+        border-radius: 30px;
+        border: 1.5px solid var(--border);
+        background: #fff;
+        cursor: pointer;
+        font-family: var(--font);
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--muted);
+        white-space: nowrap;
+        flex-shrink: 0;
+      }
+      .ftab.active {
+        background: var(--primary);
+        border-color: var(--primary);
+        color: #fff;
+      }
+
+      /* ── RECOMMENDED SCROLL ── */
+      .rec-scroll {
+        display: flex;
+        gap: 10px;
+        overflow-x: auto;
+        padding-bottom: 6px;
+        margin-bottom: 14px;
+        -webkit-overflow-scrolling: touch;
+      }
+      .rec-scroll::-webkit-scrollbar {
+        display: none;
+      }
+      .rec-card {
+        background: #fff;
+        border-radius: var(--radius-sm);
+        padding: 14px 12px;
+        min-width: 170px;
+        box-shadow: var(--card-shadow);
+        flex-shrink: 0;
+        cursor: pointer;
+      }
+      .rec-icon {
+        font-size: 26px;
+        margin-bottom: 8px;
+      }
+      .rec-title {
+        font-weight: 700;
+        font-size: 13px;
+        color: var(--dark);
+        margin-bottom: 5px;
+      }
+      .rec-pay {
+        font-family: var(--font2);
+        font-size: 15px;
+        font-weight: 700;
+        color: var(--primary);
+      }
+      .rec-meta {
+        font-size: 11px;
+        color: var(--muted);
+        margin-top: 3px;
+      }
+      .rec-match {
+        font-size: 10px;
+        font-weight: 700;
+        color: var(--accent);
+        margin-top: 6px;
+      }
+
+      /* ── JOB CARDS ── */
+      .jobs-list {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+      .job-card {
+        background: #fff;
+        border-radius: var(--radius);
+        padding: 16px;
+        box-shadow: var(--card-shadow);
+        cursor: pointer;
+        border: 1.5px solid transparent;
+        position: relative;
+        overflow: hidden;
+      }
+      .job-card.urg {
+        border-color: rgba(255, 59, 48, 0.25);
+      }
+      .urg-ribbon {
+        position: absolute;
+        top: 0;
+        right: 0;
+        background: var(--urgent);
+        color: #fff;
+        font-size: 9px;
+        font-weight: 800;
+        padding: 4px 10px;
+        border-radius: 0 var(--radius) 0 10px;
+        letter-spacing: 0.5px;
+      }
+      .jc-top {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        margin-bottom: 10px;
+      }
+      .jc-icon {
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+        background: var(--primary-light);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 22px;
+        flex-shrink: 0;
+      }
+      .jc-head {
+        flex: 1;
+        min-width: 0;
+      }
+      .jc-title {
+        font-family: var(--font2);
+        font-weight: 700;
+        font-size: 15px;
+        color: var(--dark);
+        margin-bottom: 4px;
+        line-height: 1.3;
+      }
+      .jc-emp {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .emp-av {
+        width: 20px;
+        height: 20px;
+        border-radius: 6px;
+        background: linear-gradient(135deg, var(--primary), var(--accent));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-weight: 700;
+        font-size: 9px;
+        flex-shrink: 0;
+      }
+      .status-pill {
+        font-size: 10px;
+        font-weight: 700;
+        padding: 3px 8px;
+        border-radius: 20px;
+        letter-spacing: 0.4px;
+        white-space: nowrap;
+        flex-shrink: 0;
+      }
+      .sp-open {
+        background: rgba(0, 200, 83, 0.12);
+        color: var(--accent);
+      }
+      .sp-urg {
+        background: rgba(255, 59, 48, 0.12);
+        color: var(--urgent);
+      }
+      .sp-fill {
+        background: rgba(107, 114, 128, 0.12);
+        color: var(--muted);
+      }
+      .jc-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-bottom: 10px;
+      }
+      .jc-chip {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        font-size: 11px;
+        color: var(--mid);
+        background: var(--surface);
+        padding: 4px 8px;
+        border-radius: 6px;
+      }
+      .jc-pay {
+        font-family: var(--font2);
+        font-size: 18px;
+        font-weight: 700;
+        color: var(--primary);
+        margin-bottom: 10px;
+      }
+      .jc-pay span {
+        font-size: 12px;
+        color: var(--muted);
+        font-weight: 500;
+      }
+      .jc-actions {
+        display: flex;
+        gap: 7px;
+      }
+      .btn-apply {
+        flex: 1;
+        padding: 10px 8px;
+        border-radius: 9px;
+        background: var(--primary);
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        font-family: var(--font);
+        font-weight: 700;
+        font-size: 13px;
+      }
+      .btn-ico {
+        width: 40px;
+        height: 40px;
+        border-radius: 9px;
+        border: 1.5px solid var(--border);
+        background: #fff;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 17px;
+        flex-shrink: 0;
+      }
+      .btn-wa {
+        border-color: rgba(0, 200, 83, 0.3);
+      }
+      .stars {
+        color: #fbbf24;
+        font-size: 11px;
+        letter-spacing: -1px;
+      }
+
+      /* ── LOCATION PILL ── */
+      .loc-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: var(--primary-light);
+        color: var(--primary);
+        padding: 6px 12px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 600;
+        border: 1.5px solid rgba(0, 102, 255, 0.2);
+        margin-bottom: 12px;
+        cursor: pointer;
+      }
+
+      /* ══ ENEO SCREEN ══ */
+      .eneo-header {
+        background: linear-gradient(135deg, var(--dark2), #0d2d6e);
+        border-radius: var(--radius);
+        padding: 18px;
+        margin-bottom: 14px;
+        position: relative;
+        overflow: hidden;
+      }
+      .eneo-header::before {
+        content: "";
+        position: absolute;
+        top: -40px;
+        right: -40px;
+        width: 150px;
+        height: 150px;
+        background: radial-gradient(
+          circle,
+          rgba(0, 200, 83, 0.18),
+          transparent 70%
+        );
+        border-radius: 50%;
+      }
+      .eneo-htitle {
+        font-family: var(--font2);
+        font-size: 20px;
+        font-weight: 800;
+        color: #fff;
+        margin-bottom: 4px;
+      }
+      .eneo-hsub {
+        color: rgba(255, 255, 255, 0.5);
+        font-size: 12px;
+      }
+      .breadcrumb {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 10px 0 14px;
+        flex-wrap: wrap;
+      }
+      .bc-item {
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--primary);
+        cursor: pointer;
+        background: var(--primary-light);
+        padding: 4px 10px;
+        border-radius: 20px;
+      }
+      .bc-item.active {
+        background: var(--primary);
+        color: #fff;
+      }
+      .bc-sep {
+        color: var(--muted);
+        font-size: 14px;
+      }
+      .eneo-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+      .eneo-card {
+        background: #fff;
+        border-radius: var(--radius-sm);
+        padding: 14px 12px;
+        box-shadow: var(--card-shadow);
+        cursor: pointer;
+        transition: all 0.2s;
+        border: 1.5px solid transparent;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .eneo-card:active {
+        transform: scale(0.97);
+      }
+      .eneo-card.selected {
+        border-color: var(--primary);
+        background: var(--primary-light);
+      }
+      .eneo-card-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
+        background: var(--primary-light);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        flex-shrink: 0;
+      }
+      .eneo-card.selected .eneo-card-icon {
+        background: var(--primary);
+      }
+      .eneo-card-info {
+        flex: 1;
+        min-width: 0;
+      }
+      .eneo-card-name {
+        font-weight: 700;
+        font-size: 13px;
+        color: var(--dark);
+        margin-bottom: 2px;
+      }
+      .eneo-card.selected .eneo-card-name {
+        color: var(--primary);
+      }
+      .eneo-card-count {
+        font-size: 11px;
+        color: var(--muted);
+      }
+      .eneo-card-arrow {
+        color: var(--muted);
+        font-size: 16px;
+        flex-shrink: 0;
+      }
+      .eneo-card.selected .eneo-card-arrow {
+        color: var(--primary);
+      }
+      .eneo-level-title {
+        font-family: var(--font2);
+        font-size: 15px;
+        font-weight: 700;
+        color: var(--dark);
+        margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .eneo-back-btn {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        background: var(--surface);
+        border: 1.5px solid var(--border);
+        border-radius: 9px;
+        padding: 8px 12px;
+        font-family: var(--font);
+        font-weight: 600;
+        font-size: 13px;
+        color: var(--mid);
+        cursor: pointer;
+        margin-bottom: 12px;
+        width: fit-content;
+      }
+
+      /* ── MAP ── */
+      .map-box {
+        background: #fff;
+        border-radius: var(--radius);
+        overflow: hidden;
+        box-shadow: var(--card-shadow);
+        margin-bottom: 14px;
+      }
+      .map-inner {
+        height: 300px;
+        background: linear-gradient(135deg, #1a2744, #0f1f3d);
+        position: relative;
+        overflow: hidden;
+      }
+      .map-grid-bg {
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(0, 102, 255, 0.08) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(0, 102, 255, 0.08) 1px, transparent 1px);
+        background-size: 36px 36px;
+      }
+      .map-label-box {
+        position: absolute;
+        top: 12px;
+        left: 12px;
+        background: rgba(0, 0, 0, 0.5);
+        color: #fff;
+        backdrop-filter: blur(8px);
+        padding: 6px 12px;
+        border-radius: 7px;
+        font-size: 12px;
+        font-weight: 600;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      .map-ctrls {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+      }
+      .mc-btn {
+        background: rgba(255, 255, 255, 0.9);
+        border: none;
+        cursor: pointer;
+        width: 32px;
+        height: 32px;
+        border-radius: 7px;
+        font-size: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+      }
+      .map-pin {
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        cursor: pointer;
+      }
+      .pin-dot {
+        width: 36px;
+        height: 36px;
+        border-radius: 50% 50% 50% 0;
+        transform: rotate(-45deg);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+        border: 2px solid rgba(255, 255, 255, 0.4);
+      }
+      .pin-dot-i {
+        transform: rotate(45deg);
+        font-size: 15px;
+      }
+      .pin-urg .pin-dot {
+        background: var(--urgent);
+      }
+      .pin-open .pin-dot {
+        background: var(--accent);
+      }
+      .pin-ver .pin-dot {
+        background: var(--primary);
+      }
+      .pin-lbl {
+        background: rgba(0, 0, 0, 0.65);
+        color: #fff;
+        font-size: 9px;
+        font-weight: 700;
+        padding: 2px 6px;
+        border-radius: 5px;
+        margin-top: 3px;
+        white-space: nowrap;
+        backdrop-filter: blur(4px);
+      }
+      .user-dot {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+      }
+      .user-dot-inner {
+        width: 16px;
+        height: 16px;
+        background: #fff;
+        border-radius: 50%;
+        border: 3px solid var(--primary);
+        box-shadow: 0 0 0 7px rgba(0, 102, 255, 0.18);
+      }
+      .map-legend-row {
+        display: flex;
+        gap: 14px;
+        padding: 12px 16px;
+        flex-wrap: wrap;
+      }
+      .leg-item {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        font-size: 11px;
+        font-weight: 600;
+        color: var(--mid);
+      }
+      .leg-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+      }
+      .ld-r {
+        background: var(--urgent);
+      }
+      .ld-g {
+        background: var(--accent);
+      }
+      .ld-b {
+        background: var(--primary);
+      }
+      .nearby-list {
+        display: flex;
+        flex-direction: column;
+        gap: 9px;
+      }
+      .nearby-card {
+        background: #fff;
+        border-radius: var(--radius-sm);
+        padding: 12px;
+        box-shadow: var(--card-shadow);
+        display: flex;
+        align-items: center;
+        gap: 11px;
+        cursor: pointer;
+      }
+      .nc-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 11px;
+        background: var(--primary-light);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        flex-shrink: 0;
+      }
+      .nc-info {
+        flex: 1;
+        min-width: 0;
+      }
+      .nc-title {
+        font-weight: 700;
+        font-size: 14px;
+        color: var(--dark);
+        margin-bottom: 3px;
+      }
+      .nc-meta {
+        font-size: 11px;
+        color: var(--muted);
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+      .nc-dist {
+        font-size: 12px;
+        font-weight: 700;
+        color: var(--primary);
+        white-space: nowrap;
+        flex-shrink: 0;
+      }
+
+      /* ── PROFILE ── */
+      .prof-hero {
+        background: linear-gradient(135deg, var(--dark2), var(--primary-dark));
+        border-radius: var(--radius);
+        padding: 24px 18px;
+        margin-bottom: 14px;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+      .prof-hero::before {
+        content: "";
+        position: absolute;
+        top: -40px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 240px;
+        height: 240px;
+        background: radial-gradient(
+          circle,
+          rgba(0, 200, 83, 0.13),
+          transparent 70%
+        );
+        border-radius: 50%;
+      }
+      .prof-av-wrap {
+        position: relative;
+        display: inline-block;
+        margin-bottom: 12px;
+      }
+      .prof-av {
+        width: 80px;
+        height: 80px;
+        border-radius: 22px;
+        background: linear-gradient(135deg, var(--primary), var(--accent));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 30px;
+        font-weight: 800;
+        color: #fff;
+        border: 3px solid rgba(255, 255, 255, 0.2);
+        margin: 0 auto;
+      }
+      .prof-ver {
+        position: absolute;
+        bottom: -3px;
+        right: -3px;
+        background: var(--accent);
+        width: 22px;
+        height: 22px;
+        border-radius: 7px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        border: 2px solid #fff;
+      }
+      .prof-name {
+        font-family: var(--font2);
+        font-size: 20px;
+        font-weight: 700;
+        color: #fff;
+        margin-bottom: 4px;
+      }
+      .prof-role {
+        color: rgba(255, 255, 255, 0.55);
+        font-size: 12px;
+        margin-bottom: 12px;
+      }
+      .prof-badges {
+        display: flex;
+        gap: 6px;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-bottom: 12px;
+      }
+      .bp {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        padding: 4px 10px;
+        border-radius: 20px;
+        font-size: 11px;
+        font-weight: 700;
+      }
+      .bp-gold {
+        background: rgba(251, 191, 36, 0.15);
+        color: #fbbf24;
+        border: 1px solid rgba(251, 191, 36, 0.3);
+      }
+      .bp-blue {
+        background: rgba(0, 102, 255, 0.15);
+        color: #60a5fa;
+        border: 1px solid rgba(0, 102, 255, 0.3);
+      }
+      .bp-green {
+        background: rgba(0, 200, 83, 0.15);
+        color: var(--accent);
+        border: 1px solid rgba(0, 200, 83, 0.3);
+      }
+      .prof-stats {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+        margin-bottom: 14px;
+      }
+      .ps-card {
+        background: #fff;
+        border-radius: var(--radius-sm);
+        padding: 14px 8px;
+        text-align: center;
+        box-shadow: var(--card-shadow);
+      }
+      .ps-val {
+        font-family: var(--font2);
+        font-size: 18px;
+        font-weight: 700;
+        color: var(--primary);
+      }
+      .ps-lbl {
+        font-size: 10px;
+        color: var(--muted);
+        font-weight: 500;
+        margin-top: 2px;
+      }
+      .trust-box {
+        background: #fff;
+        border-radius: var(--radius-sm);
+        padding: 16px;
+        box-shadow: var(--card-shadow);
+        margin-bottom: 14px;
+      }
+      .trust-hdr {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 12px;
+      }
+      .trust-score {
+        font-family: var(--font2);
+        font-size: 26px;
+        font-weight: 700;
+        color: var(--primary);
+      }
+      .trust-bar-bg {
+        height: 9px;
+        background: var(--surface);
+        border-radius: 5px;
+        overflow: hidden;
+      }
+      .trust-bar-fill {
+        height: 100%;
+        border-radius: 5px;
+        background: linear-gradient(90deg, var(--primary), var(--accent));
+        width: 0;
+        transition: width 1s;
+      }
+      .lvl-row {
+        display: flex;
+        gap: 6px;
+        margin-top: 12px;
+        flex-wrap: wrap;
+      }
+      .lvl-badge {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        padding: 5px 10px;
+        border-radius: 20px;
+        font-size: 11px;
+        font-weight: 700;
+      }
+      .lb-on {
+        background: var(--primary);
+        color: #fff;
+      }
+      .lb-off {
+        background: var(--surface);
+        color: var(--muted);
+        border: 1px solid var(--border);
+      }
+      .txn-list {
+        display: flex;
+        flex-direction: column;
+        gap: 9px;
+      }
+      .txn-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        background: #fff;
+        border-radius: var(--radius-sm);
+        padding: 12px;
+        box-shadow: var(--card-shadow);
+      }
+      .txn-icon {
+        width: 38px;
+        height: 38px;
+        border-radius: 11px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+        flex-shrink: 0;
+      }
+      .ti-g {
+        background: rgba(0, 200, 83, 0.1);
+      }
+      .ti-b {
+        background: var(--primary-light);
+      }
+      .txn-info {
+        flex: 1;
+        min-width: 0;
+      }
+      .txn-ttl {
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--dark);
+      }
+      .txn-dt {
+        font-size: 11px;
+        color: var(--muted);
+        margin-top: 1px;
+      }
+      .txn-amt {
+        font-family: var(--font2);
+        font-weight: 700;
+        font-size: 14px;
+        white-space: nowrap;
+        flex-shrink: 0;
+      }
+      .ta-p {
+        color: var(--accent);
+      }
+      .ta-m {
+        color: var(--urgent);
+      }
+
+      /* ── WALLET ── */
+      .wallet-card {
+        background: linear-gradient(135deg, var(--dark2), #1e3a8a);
+        border-radius: var(--radius);
+        padding: 22px 18px;
+        margin-bottom: 14px;
+        position: relative;
+        overflow: hidden;
+      }
+      .wallet-card::before {
+        content: "";
+        position: absolute;
+        top: -50px;
+        right: -50px;
+        width: 180px;
+        height: 180px;
+        background: radial-gradient(
+          circle,
+          rgba(0, 200, 83, 0.18),
+          transparent 70%
+        );
+        border-radius: 50%;
+      }
+      .wc-lbl {
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.55);
+        font-weight: 600;
+        margin-bottom: 6px;
+      }
+      .wc-amt {
+        font-family: var(--font2);
+        font-size: 36px;
+        font-weight: 800;
+        color: #fff;
+        margin-bottom: 4px;
+      }
+      .wc-amt span {
+        font-size: 18px;
+        opacity: 0.65;
+      }
+      .wc-sub {
+        font-size: 11px;
+        color: rgba(255, 255, 255, 0.4);
+        margin-bottom: 18px;
+      }
+      .wc-acts {
+        display: flex;
+        gap: 8px;
+      }
+      .wc-btn {
+        flex: 1;
+        padding: 11px 6px;
+        border-radius: 10px;
+        border: none;
+        cursor: pointer;
+        font-family: var(--font);
+        font-weight: 700;
+        font-size: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+      }
+      .wb-p {
+        background: var(--accent);
+        color: #fff;
+      }
+      .wb-o {
+        background: rgba(255, 255, 255, 0.1);
+        color: #fff;
+        border: 1.5px solid rgba(255, 255, 255, 0.2);
+      }
+      .money-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+        margin-bottom: 14px;
+      }
+      .money-card {
+        background: #fff;
+        border-radius: var(--radius-sm);
+        padding: 14px 8px;
+        text-align: center;
+        box-shadow: var(--card-shadow);
+      }
+      .mc-icon {
+        font-size: 24px;
+        margin-bottom: 6px;
+      }
+      .mc-val {
+        font-family: var(--font2);
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--dark);
+      }
+      .mc-lbl {
+        font-size: 10px;
+        color: var(--muted);
+        margin-top: 3px;
+      }
+      .earn-chart {
+        background: #fff;
+        border-radius: var(--radius-sm);
+        padding: 16px;
+        box-shadow: var(--card-shadow);
+        margin-bottom: 14px;
+      }
+      .chart-bars {
+        display: flex;
+        align-items: flex-end;
+        gap: 6px;
+        height: 90px;
+        margin-top: 14px;
+      }
+      .chart-bw {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+      }
+      .chart-b {
+        width: 100%;
+        border-radius: 5px 5px 0 0;
+        min-height: 4px;
+      }
+      .cb-b {
+        background: linear-gradient(
+          180deg,
+          var(--primary),
+          var(--primary-dark)
+        );
+      }
+      .cb-g {
+        background: linear-gradient(180deg, var(--accent), var(--accent-dark));
+      }
+      .chart-d {
+        font-size: 10px;
+        color: var(--muted);
+        font-weight: 600;
+      }
+      .mm-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+        margin-bottom: 14px;
+      }
+      .mm-card {
+        background: #fff;
+        border-radius: var(--radius-sm);
+        padding: 14px 8px;
+        text-align: center;
+        box-shadow: var(--card-shadow);
+        cursor: pointer;
+      }
+      .mm-icon {
+        font-size: 28px;
+        margin-bottom: 6px;
+      }
+      .mm-name {
+        font-weight: 700;
+        font-size: 13px;
+        color: var(--dark);
+      }
+      .mm-status {
+        font-size: 11px;
+        color: var(--muted);
+        margin-top: 3px;
+      }
+      .mm-status.connected {
+        color: var(--accent);
+        font-weight: 600;
+      }
+
+      /* ── GAMIFICATION ── */
+      .xp-banner {
+        background: linear-gradient(135deg, #7c3aed, #4f46e5);
+        border-radius: var(--radius);
+        padding: 20px 18px;
+        margin-bottom: 14px;
+        position: relative;
+        overflow: hidden;
+      }
+      .xp-banner::before {
+        content: "";
+        position: absolute;
+        top: -30px;
+        right: -30px;
+        width: 140px;
+        height: 140px;
+        background: radial-gradient(
+          circle,
+          rgba(255, 255, 255, 0.1),
+          transparent 70%
+        );
+        border-radius: 50%;
+      }
+      .xp-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 14px;
+      }
+      .xp-lvl-badge {
+        width: 50px;
+        height: 50px;
+        border-radius: 14px;
+        background: rgba(255, 255, 255, 0.15);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-size: 9px;
+        font-weight: 700;
+        color: rgba(255, 255, 255, 0.65);
+        flex-shrink: 0;
+      }
+      .xp-num {
+        font-family: var(--font2);
+        font-size: 20px;
+        font-weight: 800;
+        color: #fff;
+        line-height: 1;
+      }
+      .xp-pts {
+        text-align: right;
+      }
+      .xp-pts-n {
+        font-family: var(--font2);
+        font-size: 26px;
+        font-weight: 800;
+        color: #fff;
+      }
+      .xp-pts-l {
+        font-size: 11px;
+        color: rgba(255, 255, 255, 0.55);
+      }
+      .xp-bar-bg {
+        height: 7px;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 4px;
+        overflow: hidden;
+        margin-bottom: 6px;
+      }
+      .xp-bar-fill {
+        height: 100%;
+        background: linear-gradient(90deg, #34d399, #10b981);
+        border-radius: 4px;
+        width: 0;
+        transition: width 1s;
+      }
+      .xp-bar-lbl {
+        font-size: 11px;
+        color: rgba(255, 255, 255, 0.5);
+      }
+      .streak-banner {
+        background: linear-gradient(135deg, #92400e, #78350f);
+        border-radius: var(--radius-sm);
+        padding: 14px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 14px;
+      }
+      .sb-fire {
+        font-size: 26px;
+        flex-shrink: 0;
+      }
+      .sb-t {
+        flex: 1;
+      }
+      .sb-title {
+        font-weight: 700;
+        color: #fef3c7;
+        font-size: 14px;
+      }
+      .sb-sub {
+        font-size: 11px;
+        color: rgba(254, 243, 199, 0.55);
+        margin-top: 2px;
+      }
+      .streaks-row {
+        display: flex;
+        gap: 6px;
+        margin-bottom: 14px;
+        overflow-x: auto;
+        padding-bottom: 4px;
+        -webkit-overflow-scrolling: touch;
+      }
+      .streaks-row::-webkit-scrollbar {
+        display: none;
+      }
+      .streak-d {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+        flex-shrink: 0;
+        min-width: 46px;
+      }
+      .s-circle {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+        border: 2px solid var(--border);
+      }
+      .sc-done {
+        background: linear-gradient(135deg, #f59e0b, #d97706);
+        border-color: #f59e0b;
+      }
+      .sc-today {
+        background: var(--primary);
+        border-color: var(--primary);
+        animation: pulse 1.5s infinite;
+      }
+      @keyframes pulse {
+        0%,
+        100% {
+          box-shadow: 0 0 0 0 rgba(0, 102, 255, 0.4);
+        }
+        50% {
+          box-shadow: 0 0 0 7px rgba(0, 102, 255, 0);
+        }
+      }
+      .s-lbl {
+        font-size: 10px;
+        color: var(--muted);
+        font-weight: 600;
+      }
+      .badges-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 9px;
+        margin-bottom: 14px;
+      }
+      .badge-card {
+        background: #fff;
+        border-radius: var(--radius-sm);
+        padding: 12px 8px;
+        text-align: center;
+        box-shadow: var(--card-shadow);
+        cursor: pointer;
+      }
+      .badge-card.locked {
+        opacity: 0.4;
+      }
+      .badge-em {
+        font-size: 28px;
+        margin-bottom: 5px;
+      }
+      .badge-nm {
+        font-size: 10px;
+        font-weight: 700;
+        color: var(--dark);
+        margin-bottom: 2px;
+      }
+      .badge-dc {
+        font-size: 9px;
+        color: var(--muted);
+      }
+      .lb-list {
+        display: flex;
+        flex-direction: column;
+        gap: 9px;
+      }
+      .lb-row {
+        background: #fff;
+        border-radius: var(--radius-sm);
+        padding: 12px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        box-shadow: var(--card-shadow);
+      }
+      .lb-rank {
+        font-family: var(--font2);
+        font-size: 16px;
+        font-weight: 800;
+        color: var(--muted);
+        width: 26px;
+        flex-shrink: 0;
+      }
+      .lb-rank.gold {
+        color: #fbbf24;
+      }
+      .lb-rank.silver {
+        color: #9ca3af;
+      }
+      .lb-rank.bronze {
+        color: #cd7f32;
+      }
+      .lb-av {
+        width: 38px;
+        height: 38px;
+        border-radius: 11px;
+        background: linear-gradient(135deg, var(--primary), var(--accent));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-weight: 700;
+        font-size: 13px;
+        flex-shrink: 0;
+      }
+      .lb-info {
+        flex: 1;
+        min-width: 0;
+      }
+      .lb-name {
+        font-weight: 700;
+        font-size: 13px;
+        color: var(--dark);
+      }
+      .lb-jobs {
+        font-size: 11px;
+        color: var(--muted);
+      }
+      .lb-earn {
+        font-family: var(--font2);
+        font-weight: 700;
+        font-size: 14px;
+        color: var(--primary);
+        white-space: nowrap;
+        flex-shrink: 0;
+      }
+
+      /* ── ADMIN ── */
+      .admin-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        margin-bottom: 14px;
+      }
+      .as-card {
+        background: #fff;
+        border-radius: var(--radius-sm);
+        padding: 16px 14px;
+        box-shadow: var(--card-shadow);
+      }
+      .as-icon {
+        font-size: 24px;
+        margin-bottom: 8px;
+      }
+      .as-val {
+        font-family: var(--font2);
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--dark);
+      }
+      .as-lbl {
+        font-size: 11px;
+        color: var(--muted);
+        margin-top: 2px;
+        font-weight: 500;
+      }
+      .as-trend {
+        font-size: 11px;
+        font-weight: 600;
+        margin-top: 6px;
+      }
+      .tu {
+        color: var(--accent);
+      }
+      .td {
+        color: var(--urgent);
+      }
+      .app-list {
+        display: flex;
+        flex-direction: column;
+        gap: 9px;
+        margin-bottom: 14px;
+      }
+      .app-row {
+        background: #fff;
+        border-radius: var(--radius-sm);
+        padding: 12px;
+        box-shadow: var(--card-shadow);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .ap-av {
+        width: 38px;
+        height: 38px;
+        border-radius: 11px;
+        background: linear-gradient(135deg, var(--primary), var(--accent));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-weight: 700;
+        font-size: 12px;
+        flex-shrink: 0;
+      }
+      .ap-info {
+        flex: 1;
+        min-width: 0;
+      }
+      .ap-name {
+        font-weight: 700;
+        font-size: 13px;
+        color: var(--dark);
+      }
+      .ap-meta {
+        font-size: 11px;
+        color: var(--muted);
+        margin-top: 2px;
+      }
+      .ap-score {
+        font-size: 12px;
+        font-weight: 700;
+        padding: 3px 7px;
+        border-radius: 6px;
+        white-space: nowrap;
+        flex-shrink: 0;
+      }
+      .score-hi {
+        background: rgba(0, 200, 83, 0.1);
+        color: var(--accent);
+      }
+      .score-md {
+        background: rgba(255, 149, 0, 0.1);
+        color: var(--warning);
+      }
+      .score-lo {
+        background: rgba(255, 59, 48, 0.1);
+        color: var(--urgent);
+      }
+      .ap-btn {
+        padding: 6px 10px;
+        border-radius: 7px;
+        border: none;
+        cursor: pointer;
+        font-family: var(--font);
+        font-size: 11px;
+        font-weight: 700;
+        white-space: nowrap;
+        flex-shrink: 0;
+      }
+      .ab-ok {
+        background: var(--accent);
+        color: #fff;
+      }
+      .ab-ph {
+        background: var(--primary);
+        color: #fff;
+      }
+      .ab-vw {
+        background: var(--surface);
+        color: var(--mid);
+        border: 1px solid var(--border);
+      }
+
+      /* ── POST JOB ── */
+      .post-form {
+        background: #fff;
+        border-radius: var(--radius-sm);
+        padding: 18px;
+        box-shadow: var(--card-shadow);
+      }
+      .form-g {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        margin-bottom: 12px;
+      }
+      .form-lbl {
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--mid);
+      }
+      .form-inp,
+      .form-sel,
+      .form-ta {
+        padding: 11px 12px;
+        border: 1.5px solid var(--border);
+        border-radius: 9px;
+        font-family: var(--font);
+        font-size: 14px;
+        color: var(--dark);
+        background: #fff;
+        outline: none;
+        width: 100%;
+      }
+      .form-inp:focus,
+      .form-sel:focus,
+      .form-ta:focus {
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.09);
+      }
+      .form-ta {
+        resize: vertical;
+        min-height: 80px;
+      }
+      .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+      .btn-post {
+        background: linear-gradient(135deg, var(--primary), var(--accent));
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        padding: 14px;
+        border-radius: 11px;
+        font-family: var(--font);
+        font-weight: 700;
+        font-size: 15px;
+        width: 100%;
+        margin-top: 4px;
+      }
+
+      /* ── MODAL ── */
+      .modal-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 500;
+        display: none;
+        align-items: flex-end;
+        justify-content: center;
+        padding: 0;
+        backdrop-filter: blur(4px);
+      }
+      .modal-overlay.active {
+        display: flex;
+      }
+      .modal {
+        background: #fff;
+        border-radius: 20px 20px 0 0;
+        padding: 20px 18px 30px;
+        width: 100%;
+        max-height: 90vh;
+        overflow-y: auto;
+        animation: slideUp 0.28s ease;
+      }
+      @keyframes slideUp {
+        from {
+          transform: translateY(100%);
+        }
+        to {
+          transform: translateY(0);
+        }
+      }
+      .modal-handle {
+        width: 36px;
+        height: 4px;
+        background: var(--border);
+        border-radius: 2px;
+        margin: 0 auto 16px;
+      }
+      .modal-title {
+        font-family: var(--font2);
+        font-size: 18px;
+        font-weight: 700;
+        color: var(--dark);
+        margin-bottom: 12px;
+      }
+      .modal-map-thumb {
+        height: 130px;
+        background: linear-gradient(135deg, #1a2744, #0f1f3d);
+        border-radius: 12px;
+        margin-bottom: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 44px;
+        position: relative;
+        overflow: hidden;
+      }
+      .modal-map-thumb::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(0, 102, 255, 0.08) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(0, 102, 255, 0.08) 1px, transparent 1px);
+        background-size: 28px 28px;
+      }
+      .modal-map-lbl {
+        position: absolute;
+        bottom: 10px;
+        left: 10px;
+        background: rgba(0, 0, 0, 0.6);
+        color: #fff;
+        padding: 3px 9px;
+        border-radius: 6px;
+        font-size: 11px;
+        font-weight: 600;
+        backdrop-filter: blur(4px);
+      }
+      .modal-chips {
+        display: flex;
+        gap: 7px;
+        flex-wrap: wrap;
+        margin-bottom: 12px;
+      }
+      .m-chip {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        background: var(--surface);
+        padding: 5px 10px;
+        border-radius: 7px;
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--mid);
+      }
+      .modal-pay {
+        font-family: var(--font2);
+        font-size: 26px;
+        font-weight: 800;
+        color: var(--primary);
+        margin-bottom: 10px;
+      }
+      .modal-pay span {
+        font-size: 13px;
+        color: var(--muted);
+        font-weight: 500;
+      }
+      .modal-desc {
+        font-size: 13px;
+        color: var(--muted);
+        line-height: 1.6;
+        margin-bottom: 14px;
+      }
+      .modal-ai-tip {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background: var(--primary-light);
+        padding: 10px 12px;
+        border-radius: 9px;
+        margin-bottom: 16px;
+      }
+      .modal-ai-tip span {
+        font-size: 13px;
+        color: var(--primary);
+        font-weight: 600;
+      }
+      .modal-acts {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+      }
+      .m-btn {
+        padding: 12px 8px;
+        border-radius: 10px;
+        border: 1.5px solid;
+        cursor: pointer;
+        font-family: var(--font);
+        font-weight: 700;
+        font-size: 13px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+      }
+      .mb-p {
+        background: var(--primary);
+        border-color: var(--primary);
+        color: #fff;
+      }
+      .mb-g {
+        background: var(--accent);
+        border-color: var(--accent);
+        color: #fff;
+      }
+      .mb-o {
+        background: #fff;
+        border-color: var(--border);
+        color: var(--mid);
+      }
+      .mb-r {
+        background: rgba(255, 59, 48, 0.07);
+        border-color: rgba(255, 59, 48, 0.2);
+        color: var(--urgent);
+      }
+
+      /* ── TOAST ── */
+      .toast {
+        position: fixed;
+        bottom: calc(var(--bnav-h)+12px);
+        left: 50%;
+        transform: translateX(-50%) translateY(16px);
+        background: var(--dark2);
+        color: #fff;
+        padding: 11px 20px;
+        border-radius: 11px;
+        font-size: 13px;
+        font-weight: 600;
+        z-index: 600;
+        opacity: 0;
+        transition: all 0.3s;
+        pointer-events: none;
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        box-shadow: 0 4px 18px rgba(0, 0, 0, 0.3);
+        white-space: nowrap;
+        max-width: 90vw;
+      }
+      .toast.show {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- TOPBAR -->
+    <div class="topbar">
+      <a class="logo" href="#">
+        <div class="logo-icon"><img src="Left.png" alt="MtaaJobs" /></div>
+        <span class="logo-text">Mtaa<span>Jobs</span></span>
+      </a>
+      <div class="topbar-right">
+        <button class="icon-btn">🔔<span class="notif-dot"></span></button>
+        <button class="avatar-btn">AJ</button>
+      </div>
+    </div>
+
+    <!-- PAGE WRAP -->
+    <div class="page-wrap">
+      <!-- ══ HOME ══ -->
+      <div id="s-home" class="screen active">
+        <div class="hero">
+          <div class="hero-tag">📍 Kinondoni, Dar es Salaam</div>
+          <h1 class="hero-title">
+            Pata Kazi <span>Leo</span> –<br />Karibu Na Wewe
+          </h1>
+          <p class="hero-sub">
+            Kazi za haraka, malipo mazuri – ndani ya mtaa wako.
+          </p>
+          <div class="search-bar">
+            <span>🔍</span>
+            <input
+              type="text"
+              placeholder="Tafuta kazi... (Mjengo, Usafi...)"
+            />
+            <button class="search-btn">Tafuta</button>
+          </div>
+        </div>
+
+        <div class="loc-pill" onclick="showToast('📍 GPS inawaka...')">
+          📍 Kinondoni · Dar es Salaam ▾
+        </div>
+
+        <div class="ai-bar" onclick="showToast('🤖 AI Msaidizi anaanza...')">
+          <div class="ai-icon">🤖</div>
+          <div class="ai-text">
+            <div class="ai-title">AI Job Matcher – Msaidizi</div>
+            <div class="ai-sub">"Nataka kazi ya leo" – Andika au sema hapa</div>
+          </div>
+          <span style="color: rgba(255, 255, 255, 0.4); font-size: 18px"
+            >›</span
+          >
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon si-blue">💼</div>
+            <div>
+              <div class="stat-val">347</div>
+              <div class="stat-lbl">Kazi Zinapatikana</div>
+              <div class="stat-chg">↑ +28 leo</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon si-green">👷</div>
+            <div>
+              <div class="stat-val">1,204</div>
+              <div class="stat-lbl">Wafanyakazi Hai</div>
+              <div class="stat-chg">↑ +54</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon si-orange">⚡</div>
+            <div>
+              <div class="stat-val">12</div>
+              <div class="stat-lbl">Kazi za Haraka</div>
+              <div class="stat-chg">Karibu nawe</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon si-red">🏆</div>
+            <div>
+              <div class="stat-val">98%</div>
+              <div class="stat-lbl">Malipo kwa Wakati</div>
+              <div class="stat-chg">✓ Uhakika</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sec-hdr">
+          <div class="sec-title">⭐ Inayopendekezwa</div>
+          <button class="see-all">Zote →</button>
+        </div>
+        <div class="rec-scroll">
+          <div
+            class="rec-card"
+            onclick="
+              openModal(
+                'Msaada wa Duka',
+                'Kariakoo',
+                'TSh 25,000',
+                'Siku 2',
+                '🛒',
+              )
+            "
+          >
+            <div class="rec-icon">🛒</div>
+            <div class="rec-title">Msaada wa Duka</div>
+            <div class="rec-pay">TSh 25,000</div>
+            <div class="rec-meta">📍 Kariakoo · 0.8km</div>
+            <div class="rec-match">🤖 93% Match</div>
+          </div>
+          <div
+            class="rec-card"
+            onclick="
+              openModal('Kupiga Rangi', 'Sinza', 'TSh 60,000', 'Siku 3', '🎨')
+            "
+          >
+            <div class="rec-icon">🎨</div>
+            <div class="rec-title">Kupiga Rangi</div>
+            <div class="rec-pay">TSh 60,000</div>
+            <div class="rec-meta">📍 Sinza · 1.2km</div>
+            <div class="rec-match">🤖 88% Match</div>
+          </div>
+          <div
+            class="rec-card"
+            onclick="
+              openModal(
+                'Dereva Pikipiki',
+                'Mwenge',
+                'TSh 40,000',
+                'Siku 1',
+                '🏍️',
+              )
+            "
+          >
+            <div class="rec-icon">🏍️</div>
+            <div class="rec-title">Dereva Pikipiki</div>
+            <div class="rec-pay">TSh 40,000</div>
+            <div class="rec-meta">📍 Mwenge · 2.1km</div>
+            <div class="rec-match">🤖 85% Match</div>
+          </div>
+          <div
+            class="rec-card"
+            onclick="
+              openModal(
+                'Upishi Mkutano',
+                'Mikocheni',
+                'TSh 35,000',
+                'Masaa 6',
+                '🍳',
+              )
+            "
+          >
+            <div class="rec-icon">🍳</div>
+            <div class="rec-title">Upishi Mkutano</div>
+            <div class="rec-pay">TSh 35,000</div>
+            <div class="rec-meta">📍 Mikocheni · 3.4km</div>
+            <div class="rec-match">🤖 79% Match</div>
+          </div>
+        </div>
+
+        <div class="ftabs">
+          <button class="ftab active" onclick="setTab(this)">Zote</button>
+          <button class="ftab" onclick="setTab(this)">⚡ Haraka Leo</button>
+          <button class="ftab" onclick="setTab(this)">🔨 Ujenzi</button>
+          <button class="ftab" onclick="setTab(this)">🚛 Usafirishaji</button>
+          <button class="ftab" onclick="setTab(this)">🛒 Biashara</button>
+          <button class="ftab" onclick="setTab(this)">🧹 Usafi</button>
+          <button class="ftab" onclick="setTab(this)">💻 Tech</button>
+        </div>
+
+        <div class="sec-hdr">
+          <div class="sec-title">💼 Kazi Karibu Nawe</div>
+          <button class="see-all">Zote →</button>
+        </div>
+        <div class="jobs-list">
+          <div
+            class="job-card urg"
+            onclick="
+              openModal(
+                'Mjengo – Bomba la Maji',
+                'Manzese',
+                'TSh 80,000',
+                'Siku 3',
+                '🔨',
+              )
+            "
+          >
+            <div class="urg-ribbon">🔴 HARAKA</div>
+            <div class="jc-top">
+              <div class="jc-icon">🔨</div>
+              <div class="jc-head">
+                <div class="jc-title">Mjengo – Bomba la Maji</div>
+                <div class="jc-emp">
+                  <div class="emp-av">MK</div>
+                  <span>Mkandarasi Karimi</span><span>✔️</span
+                  ><span class="stars">★★★★★</span>
+                </div>
+              </div>
+              <span class="status-pill sp-urg">🔴 Haraka</span>
+            </div>
+            <div class="jc-meta">
+              <div class="jc-chip">📍 Manzese · 0.5km</div>
+              <div class="jc-chip">⏱️ LEO saa 8</div>
+              <div class="jc-chip">📅 Siku 3</div>
+            </div>
+            <div class="jc-pay">TSh 80,000 <span>/ siku</span></div>
+            <div class="jc-actions">
+              <button
+                class="btn-apply"
+                onclick="
+                  event.stopPropagation();
+                  openModal(
+                    'Mjengo – Bomba la Maji',
+                    'Manzese',
+                    'TSh 80,000',
+                    'Siku 3',
+                    '🔨',
+                  );
+                "
+              >
+                Omba Kazi
+              </button>
+              <button
+                class="btn-ico"
+                onclick="
+                  event.stopPropagation();
+                  showToast('📞 Inapiga simu...');
+                "
+              >
+                📞
+              </button>
+              <button
+                class="btn-ico btn-wa"
+                onclick="
+                  event.stopPropagation();
+                  showToast('💬 WhatsApp inafungua...');
+                "
+              >
+                💬
+              </button>
+            </div>
+          </div>
+
+          <div
+            class="job-card"
+            onclick="
+              openModal(
+                'Msaidizi Duka la Simu',
+                'Kariakoo',
+                'TSh 30,000',
+                'Masaa 8',
+                '📱',
+              )
+            "
+          >
+            <div class="jc-top">
+              <div class="jc-icon">📱</div>
+              <div class="jc-head">
+                <div class="jc-title">Msaidizi Duka la Simu</div>
+                <div class="jc-emp">
+                  <div class="emp-av">JN</div>
+                  <span>Juma Nkrumah Tech</span><span>✔️</span
+                  ><span class="stars">★★★★☆</span>
+                </div>
+              </div>
+              <span class="status-pill sp-open">🟢 Wazi</span>
+            </div>
+            <div class="jc-meta">
+              <div class="jc-chip">📍 Kariakoo · 1.2km</div>
+              <div class="jc-chip">⏱️ Wiki hii</div>
+              <div class="jc-chip">📅 Masaa 8</div>
+            </div>
+            <div class="jc-pay">TSh 30,000 <span>/ siku</span></div>
+            <div class="jc-actions">
+              <button class="btn-apply">Omba Kazi</button>
+              <button
+                class="btn-ico"
+                onclick="
+                  event.stopPropagation();
+                  showToast('📞 Inapiga simu...');
+                "
+              >
+                📞
+              </button>
+              <button
+                class="btn-ico btn-wa"
+                onclick="
+                  event.stopPropagation();
+                  showToast('💬 WhatsApp inafungua...');
+                "
+              >
+                💬
+              </button>
+            </div>
+          </div>
+
+          <div
+            class="job-card"
+            onclick="
+              openModal(
+                'Usafi wa Ofisi',
+                'Upanga',
+                'TSh 25,000',
+                'Masaa 4',
+                '🧹',
+              )
+            "
+          >
+            <div class="jc-top">
+              <div class="jc-icon">🧹</div>
+              <div class="jc-head">
+                <div class="jc-title">Usafi wa Ofisi – Asubuhi</div>
+                <div class="jc-emp">
+                  <div class="emp-av">SC</div>
+                  <span>Sparkle Clean Co.</span><span>✔️</span
+                  ><span class="stars">★★★★★</span>
+                </div>
+              </div>
+              <span class="status-pill sp-open">🟢 Wazi</span>
+            </div>
+            <div class="jc-meta">
+              <div class="jc-chip">📍 Upanga · 2km</div>
+              <div class="jc-chip">⏱️ Kesho</div>
+              <div class="jc-chip">📅 Masaa 4</div>
+            </div>
+            <div class="jc-pay">TSh 25,000 <span>/ siku</span></div>
+            <div class="jc-actions">
+              <button class="btn-apply">Omba Kazi</button>
+              <button
+                class="btn-ico"
+                onclick="
+                  event.stopPropagation();
+                  showToast('📞 Inapiga simu...');
+                "
+              >
+                📞
+              </button>
+              <button
+                class="btn-ico btn-wa"
+                onclick="
+                  event.stopPropagation();
+                  showToast('💬 WhatsApp inafungua...');
+                "
+              >
+                💬
+              </button>
+            </div>
+          </div>
+
+          <div
+            class="job-card urg"
+            onclick="
+              openModal(
+                'Dereva wa Pikipiki',
+                'Mikocheni',
+                'TSh 55,000',
+                'Siku 1',
+                '🏍️',
+              )
+            "
+          >
+            <div class="urg-ribbon">🔴 HARAKA</div>
+            <div class="jc-top">
+              <div class="jc-icon">🏍️</div>
+              <div class="jc-head">
+                <div class="jc-title">Dereva wa Pikipiki</div>
+                <div class="jc-emp">
+                  <div class="emp-av">BD</div>
+                  <span>Boda Delivery TZ</span><span>✔️</span
+                  ><span class="stars">★★★★☆</span>
+                </div>
+              </div>
+              <span class="status-pill sp-urg">🔴 Haraka</span>
+            </div>
+            <div class="jc-meta">
+              <div class="jc-chip">📍 Mikocheni · 0.9km</div>
+              <div class="jc-chip">⏱️ SASA HIVI</div>
+              <div class="jc-chip">📅 Siku 1</div>
+            </div>
+            <div class="jc-pay">TSh 55,000 <span>/ siku</span></div>
+            <div class="jc-actions">
+              <button class="btn-apply">Omba Kazi</button>
+              <button
+                class="btn-ico"
+                onclick="
+                  event.stopPropagation();
+                  showToast('📞 Inapiga simu...');
+                "
+              >
+                📞
+              </button>
+              <button
+                class="btn-ico btn-wa"
+                onclick="
+                  event.stopPropagation();
+                  showToast('💬 WhatsApp inafungua...');
+                "
+              >
+                💬
+              </button>
+            </div>
+          </div>
+
+          <div
+            class="job-card"
+            onclick="
+              openModal(
+                'Mpishi – Harusi Kubwa',
+                'Kinondoni',
+                'TSh 70,000',
+                'Siku 2',
+                '🍽️',
+              )
+            "
+          >
+            <div class="jc-top">
+              <div class="jc-icon">🍽️</div>
+              <div class="jc-head">
+                <div class="jc-title">Mpishi – Harusi Kubwa</div>
+                <div class="jc-emp">
+                  <div class="emp-av">AH</div>
+                  <span>Amina Harusi Events</span><span>✔️</span
+                  ><span class="stars">★★★★★</span>
+                </div>
+              </div>
+              <span class="status-pill sp-open">🟢 Wazi</span>
+            </div>
+            <div class="jc-meta">
+              <div class="jc-chip">📍 Kinondoni · 1.8km</div>
+              <div class="jc-chip">⏱️ Jumamosi</div>
+              <div class="jc-chip">📅 Siku 2</div>
+            </div>
+            <div class="jc-pay">TSh 70,000 <span>/ siku</span></div>
+            <div class="jc-actions">
+              <button class="btn-apply">Omba Kazi</button>
+              <button
+                class="btn-ico"
+                onclick="
+                  event.stopPropagation();
+                  showToast('📞 Inapiga simu...');
+                "
+              >
+                📞
+              </button>
+              <button
+                class="btn-ico btn-wa"
+                onclick="
+                  event.stopPropagation();
+                  showToast('💬 WhatsApp inafungua...');
+                "
+              >
+                💬
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ ENEO ══ -->
+      <div id="s-eneo" class="screen">
+        <div class="eneo-header">
+          <div class="eneo-htitle">📍 Tafuta Kazi kwa Eneo</div>
+          <div class="eneo-hsub">Chagua Mkoa → Wilaya → Mtaa → Kazi</div>
+        </div>
+
+        <!-- Breadcrumb -->
+        <div class="breadcrumb" id="breadcrumb">
+          <span class="bc-item active" onclick="eneoBc(0)">🇹🇿 Mikoa</span>
+        </div>
+
+        <!-- Level Title -->
+        <div class="eneo-level-title" id="eneo-level-title">🇹🇿 Chagua Mkoa</div>
+
+        <!-- Back Button -->
+        <button
+          class="eneo-back-btn"
+          id="eneo-back"
+          style="display: none"
+          onclick="eneoBack()"
+        >
+          ← Rudi Nyuma
+        </button>
+
+        <!-- Grid of items -->
+        <div class="eneo-grid" id="eneo-grid"></div>
+
+        <!-- Jobs shown after mtaa selected -->
+        <div id="eneo-jobs" style="display: none">
+          <div class="sec-hdr" style="margin-top: 6px">
+            <div class="sec-title" id="eneo-jobs-title">💼 Kazi katika...</div>
+          </div>
+          <div class="jobs-list" id="eneo-jobs-list"></div>
+        </div>
+      </div>
+
+      <!-- ══ MAP ══ -->
+      <div id="s-map" class="screen">
+        <div class="sec-hdr">
+          <div class="sec-title">🗺️ Ramani ya Kazi</div>
+          <button class="see-all">Orodha →</button>
+        </div>
+        <div class="map-box">
+          <div class="map-inner">
+            <div class="map-grid-bg"></div>
+            <svg
+              style="
+                position: absolute;
+                inset: 0;
+                width: 100%;
+                height: 100%;
+                opacity: 0.2;
+              "
+              viewBox="0 0 400 300"
+            >
+              <line
+                x1="0"
+                y1="150"
+                x2="400"
+                y2="150"
+                stroke="#4B9EFF"
+                stroke-width="6"
+              />
+              <line
+                x1="200"
+                y1="0"
+                x2="200"
+                y2="300"
+                stroke="#4B9EFF"
+                stroke-width="6"
+              />
+              <line
+                x1="0"
+                y1="60"
+                x2="400"
+                y2="240"
+                stroke="#4B9EFF"
+                stroke-width="3"
+              />
+              <line
+                x1="60"
+                y1="0"
+                x2="340"
+                y2="300"
+                stroke="#4B9EFF"
+                stroke-width="2"
+              />
+              <circle
+                cx="200"
+                cy="150"
+                r="30"
+                fill="none"
+                stroke="#4B9EFF"
+                stroke-width="2"
+              />
+              <circle
+                cx="200"
+                cy="150"
+                r="60"
+                fill="none"
+                stroke="#4B9EFF"
+                stroke-width="1"
+                stroke-dasharray="4,4"
+              />
+            </svg>
+            <div
+              class="map-pin pin-urg"
+              style="left: 27%; top: 33%"
+              onclick="
+                openModal(
+                  'Mjengo – Bomba la Maji',
+                  'Manzese',
+                  'TSh 80,000',
+                  'Siku 3',
+                  '🔨',
+                )
+              "
+            >
+              <div class="pin-dot"><span class="pin-dot-i">🔨</span></div>
+              <div class="pin-lbl">80k·0.5km</div>
+            </div>
+            <div
+              class="map-pin pin-ver"
+              style="left: 55%; top: 18%"
+              onclick="
+                openModal(
+                  'Msaidizi Duka la Simu',
+                  'Kariakoo',
+                  'TSh 30,000',
+                  'Masaa 8',
+                  '📱',
+                )
+              "
+            >
+              <div class="pin-dot"><span class="pin-dot-i">📱</span></div>
+              <div class="pin-lbl">30k·1.2km</div>
+            </div>
+            <div
+              class="map-pin pin-open"
+              style="left: 70%; top: 54%"
+              onclick="
+                openModal(
+                  'Usafi wa Ofisi',
+                  'Upanga',
+                  'TSh 25,000',
+                  'Masaa 4',
+                  '🧹',
+                )
+              "
+            >
+              <div class="pin-dot"><span class="pin-dot-i">🧹</span></div>
+              <div class="pin-lbl">25k·2km</div>
+            </div>
+            <div
+              class="map-pin pin-urg"
+              style="left: 40%; top: 67%"
+              onclick="
+                openModal(
+                  'Dereva wa Pikipiki',
+                  'Mikocheni',
+                  'TSh 55,000',
+                  'Siku 1',
+                  '🏍️',
+                )
+              "
+            >
+              <div class="pin-dot"><span class="pin-dot-i">🏍️</span></div>
+              <div class="pin-lbl">55k·HARAKA</div>
+            </div>
+            <div
+              class="map-pin pin-ver"
+              style="left: 60%; top: 33%"
+              onclick="
+                openModal(
+                  'Mpishi – Harusi',
+                  'Kinondoni',
+                  'TSh 70,000',
+                  'Siku 2',
+                  '🍽️',
+                )
+              "
+            >
+              <div class="pin-dot"><span class="pin-dot-i">🍽️</span></div>
+              <div class="pin-lbl">70k·1.8km</div>
+            </div>
+            <div
+              class="map-pin pin-open"
+              style="left: 18%; top: 58%"
+              onclick="
+                openModal('Kupiga Rangi', 'Sinza', 'TSh 60,000', 'Siku 3', '🎨')
+              "
+            >
+              <div class="pin-dot"><span class="pin-dot-i">🎨</span></div>
+              <div class="pin-lbl">60k·1.2km</div>
+            </div>
+            <div class="user-dot"><div class="user-dot-inner"></div></div>
+            <div class="map-label-box">📍 Kinondoni, Dar es Salaam</div>
+            <div class="map-ctrls">
+              <button class="mc-btn" onclick="showToast('🔍 Zoom in')">+</button
+              ><button class="mc-btn" onclick="showToast('🔍 Zoom out')">
+                −</button
+              ><button class="mc-btn" onclick="showToast('📍 Eneo lako')">
+                🎯
+              </button>
+            </div>
+          </div>
+          <div class="map-legend-row">
+            <div class="leg-item">
+              <div class="leg-dot ld-r"></div>
+              Haraka
+            </div>
+            <div class="leg-item">
+              <div class="leg-dot ld-g"></div>
+              Wazi
+            </div>
+            <div class="leg-item">
+              <div class="leg-dot ld-b"></div>
+              Aliyothibitishwa
+            </div>
+          </div>
+        </div>
+        <div class="sec-hdr">
+          <div class="sec-title">📍 Karibu Nawe</div>
+          <button class="see-all">Zote →</button>
+        </div>
+        <div class="nearby-list">
+          <div
+            class="nearby-card"
+            onclick="
+              openModal(
+                'Mjengo – Bomba la Maji',
+                'Manzese',
+                'TSh 80,000',
+                'Siku 3',
+                '🔨',
+              )
+            "
+          >
+            <div class="nc-icon">🔨</div>
+            <div class="nc-info">
+              <div class="nc-title">Mjengo – Bomba la Maji</div>
+              <div class="nc-meta">
+                <span>📍 Manzese</span><span>⏱️ LEO</span><span>💰 80k</span>
+              </div>
+            </div>
+            <div class="nc-dist">0.5km 🔴</div>
+          </div>
+          <div
+            class="nearby-card"
+            onclick="
+              openModal(
+                'Dereva wa Pikipiki',
+                'Mikocheni',
+                'TSh 55,000',
+                'Siku 1',
+                '🏍️',
+              )
+            "
+          >
+            <div class="nc-icon">🏍️</div>
+            <div class="nc-info">
+              <div class="nc-title">Dereva wa Pikipiki</div>
+              <div class="nc-meta">
+                <span>📍 Mikocheni</span><span>⏱️ SASA</span><span>💰 55k</span>
+              </div>
+            </div>
+            <div class="nc-dist">0.9km 🔴</div>
+          </div>
+          <div
+            class="nearby-card"
+            onclick="
+              openModal(
+                'Msaidizi Duka la Simu',
+                'Kariakoo',
+                'TSh 30,000',
+                'Masaa 8',
+                '📱',
+              )
+            "
+          >
+            <div class="nc-icon">📱</div>
+            <div class="nc-info">
+              <div class="nc-title">Msaidizi Duka la Simu</div>
+              <div class="nc-meta">
+                <span>📍 Kariakoo</span><span>⏱️ Wiki</span><span>💰 30k</span>
+              </div>
+            </div>
+            <div class="nc-dist">1.2km 🟢</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ PROFAILI ══ -->
+      <div id="s-profile" class="screen">
+        <div class="prof-hero">
+          <div class="prof-av-wrap">
+            <div class="prof-av">AJ</div>
+            <div class="prof-ver">✔️</div>
+          </div>
+          <div class="prof-name">Amina Juma</div>
+          <div class="prof-role">📍 Kinondoni, Dar es Salaam</div>
+          <div class="prof-badges">
+            <div class="bp bp-gold">🏆 Elite</div>
+            <div class="bp bp-blue">⚡ Fast</div>
+            <div class="bp bp-green">✅ Verified Pro</div>
+          </div>
+          <div class="stars" style="font-size: 18px">★★★★★</div>
+          <div
+            style="
+              color: rgba(255, 255, 255, 0.5);
+              font-size: 12px;
+              margin-top: 5px;
+            "
+          >
+            4.9 / 5.0 · Maoni 127
+          </div>
+        </div>
+        <div class="prof-stats">
+          <div class="ps-card">
+            <div class="ps-val">89</div>
+            <div class="ps-lbl">Kazi Zilizokamilika</div>
+          </div>
+          <div class="ps-card">
+            <div class="ps-val">TSh 2.4M</div>
+            <div class="ps-lbl">Jumla Kilichopatikana</div>
+          </div>
+          <div class="ps-card">
+            <div class="ps-val">14🔥</div>
+            <div class="ps-lbl">Siku Mfululizo</div>
+          </div>
+        </div>
+        <div class="trust-box">
+          <div class="trust-hdr">
+            <div>
+              <div class="sec-title">🛡️ Alama ya Uaminifu</div>
+              <div
+                style="font-size: 11px; color: var(--muted); margin-top: 2px"
+              >
+                Kulingana na historia yako
+              </div>
+            </div>
+            <div class="trust-score">87/100</div>
+          </div>
+          <div class="trust-bar-bg">
+            <div class="trust-bar-fill" style="width: 87%"></div>
+          </div>
+          <div class="lvl-row">
+            <div class="lvl-badge lb-off">🆕 Mpya</div>
+            <div class="lvl-badge lb-off">🔧 Stadi</div>
+            <div class="lvl-badge lb-on">✅ Verified Pro</div>
+            <div class="lvl-badge lb-off">🏅 Elite</div>
+          </div>
+        </div>
+        <div class="sec-hdr">
+          <div class="sec-title">📋 Historia ya Kazi</div>
+          <button class="see-all">Zote →</button>
+        </div>
+        <div class="txn-list">
+          <div class="txn-row">
+            <div class="txn-icon ti-g">🔨</div>
+            <div class="txn-info">
+              <div class="txn-ttl">Mjengo wa Nyumba – Sinza</div>
+              <div class="txn-dt">Apr 15 · ★★★★★</div>
+            </div>
+            <div class="txn-amt ta-p">+TSh 80k</div>
+          </div>
+          <div class="txn-row">
+            <div class="txn-icon ti-b">🛒</div>
+            <div class="txn-info">
+              <div class="txn-ttl">Msaada Duka – Kariakoo</div>
+              <div class="txn-dt">Apr 12 · ★★★★☆</div>
+            </div>
+            <div class="txn-amt ta-p">+TSh 30k</div>
+          </div>
+          <div class="txn-row">
+            <div class="txn-icon ti-g">🧹</div>
+            <div class="txn-info">
+              <div class="txn-ttl">Usafi wa Ofisi – Upanga</div>
+              <div class="txn-dt">Apr 10 · ★★★★★</div>
+            </div>
+            <div class="txn-amt ta-p">+TSh 25k</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ POCHI ══ -->
+      <div id="s-wallet" class="screen">
+        <div class="wallet-card">
+          <div class="wc-lbl">💰 Bakaa ya Pochi</div>
+          <div class="wc-amt"><span>TSh</span> 485,000</div>
+          <div class="wc-sub">Ilisasishwa leo saa 2:34 PM</div>
+          <div class="wc-acts">
+            <button class="wc-btn wb-p" onclick="showToast('💸 Kutoa pesa...')">
+              💸 Toa
+            </button>
+            <button
+              class="wc-btn wb-o"
+              onclick="showToast('➕ Ingiza pesa...')"
+            >
+              ➕ Ingiza
+            </button>
+            <button class="wc-btn wb-o" onclick="showToast('📤 Tuma pesa...')">
+              📤 Tuma
+            </button>
+          </div>
+        </div>
+        <div class="sec-hdr">
+          <div class="sec-title">📱 Njia za Malipo</div>
+        </div>
+        <div class="mm-grid">
+          <div class="mm-card" onclick="showToast('M-Pesa inaungana...')">
+            <div class="mm-icon">🟢</div>
+            <div class="mm-name">M-Pesa</div>
+            <div class="mm-status connected">Imeungana</div>
+          </div>
+          <div class="mm-card" onclick="showToast('Airtel Money...')">
+            <div class="mm-icon">🔴</div>
+            <div class="mm-name">Airtel Money</div>
+            <div class="mm-status">Bonyeza</div>
+          </div>
+          <div class="mm-card" onclick="showToast('Tigo Pesa...')">
+            <div class="mm-icon">🔵</div>
+            <div class="mm-name">Tigo Pesa</div>
+            <div class="mm-status">Bonyeza</div>
+          </div>
+        </div>
+        <div class="money-grid">
+          <div class="money-card">
+            <div class="mc-icon">📅</div>
+            <div class="mc-val">TSh 80k</div>
+            <div class="mc-lbl">Leo</div>
+          </div>
+          <div class="money-card">
+            <div class="mc-icon">📊</div>
+            <div class="mc-val">TSh 320k</div>
+            <div class="mc-lbl">Wiki Hii</div>
+          </div>
+          <div class="money-card">
+            <div class="mc-icon">🏆</div>
+            <div class="mc-val">TSh 2.4M</div>
+            <div class="mc-lbl">Jumla</div>
+          </div>
+        </div>
+        <div class="earn-chart">
+          <div class="sec-title">📈 Mapato ya Wiki</div>
+          <div class="chart-bars" id="chart-bars"></div>
+        </div>
+        <div class="sec-hdr">
+          <div class="sec-title">🧾 Miamala</div>
+          <button class="see-all">Zote →</button>
+        </div>
+        <div class="txn-list">
+          <div class="txn-row">
+            <div class="txn-icon ti-g">💚</div>
+            <div class="txn-info">
+              <div class="txn-ttl">Malipo – Mjengo Sinza</div>
+              <div class="txn-dt">Leo · 10:30 AM · M-Pesa</div>
+            </div>
+            <div class="txn-amt ta-p">+TSh 80,000</div>
+          </div>
+          <div class="txn-row">
+            <div class="txn-icon ti-g">💚</div>
+            <div class="txn-info">
+              <div class="txn-ttl">Malipo – Usafi Kariakoo</div>
+              <div class="txn-dt">Jana · 3:15 PM · Airtel</div>
+            </div>
+            <div class="txn-amt ta-p">+TSh 25,000</div>
+          </div>
+          <div class="txn-row">
+            <div class="txn-icon" style="background: rgba(255, 59, 48, 0.1)">
+              🔴
+            </div>
+            <div class="txn-info">
+              <div class="txn-ttl">Kutoa Pesa – M-Pesa</div>
+              <div class="txn-dt">Apr 18 · 9:00 AM</div>
+            </div>
+            <div class="txn-amt ta-m">−TSh 100,000</div>
+          </div>
+          <div class="txn-row">
+            <div class="txn-icon ti-g">💚</div>
+            <div class="txn-info">
+              <div class="txn-ttl">Malipo – Mpishi Kinondoni</div>
+              <div class="txn-dt">Apr 17 · 7:45 PM</div>
+            </div>
+            <div class="txn-amt ta-p">+TSh 70,000</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ XP & BADGES ══ -->
+      <div id="s-game" class="screen">
+        <div class="xp-banner">
+          <div class="xp-top">
+            <div style="display: flex; align-items: center; gap: 10px">
+              <div class="xp-lvl-badge">
+                <span class="xp-num">7</span><span>LEVEL</span>
+              </div>
+              <div>
+                <div
+                  style="
+                    font-family: var(--font2);
+                    font-size: 16px;
+                    font-weight: 700;
+                    color: #fff;
+                  "
+                >
+                  Pro Worker
+                </div>
+                <div style="font-size: 11px; color: rgba(255, 255, 255, 0.55)">
+                  Nakaribia Elite!
+                </div>
+              </div>
+            </div>
+            <div class="xp-pts">
+              <div class="xp-pts-n">3,840</div>
+              <div class="xp-pts-l">XP Points</div>
+            </div>
+          </div>
+          <div class="xp-bar-bg">
+            <div class="xp-bar-fill" style="width: 76%"></div>
+          </div>
+          <div class="xp-bar-lbl">3,840 / 5,000 XP hadi Level 8</div>
+        </div>
+        <div class="streak-banner">
+          <div class="sb-fire">🔥</div>
+          <div class="sb-t">
+            <div class="sb-title">14 Siku Mfululizo!</div>
+            <div class="sb-sub">Endelea leo kupata +50 XP bonus</div>
+          </div>
+          <div
+            style="
+              font-family: var(--font2);
+              font-size: 18px;
+              font-weight: 700;
+              color: #fef3c7;
+            "
+          >
+            14🔥
+          </div>
+        </div>
+        <div class="sec-hdr"><div class="sec-title">📅 Siku za Kazi</div></div>
+        <div class="streaks-row">
+          <div class="streak-d">
+            <div class="s-circle sc-done">✅</div>
+            <div class="s-lbl">Juma</div>
+          </div>
+          <div class="streak-d">
+            <div class="s-circle sc-done">✅</div>
+            <div class="s-lbl">Mosi</div>
+          </div>
+          <div class="streak-d">
+            <div class="s-circle sc-done">✅</div>
+            <div class="s-lbl">Tatu</div>
+          </div>
+          <div class="streak-d">
+            <div class="s-circle sc-done">✅</div>
+            <div class="s-lbl">Nne</div>
+          </div>
+          <div class="streak-d">
+            <div class="s-circle sc-done">✅</div>
+            <div class="s-lbl">Tano</div>
+          </div>
+          <div class="streak-d">
+            <div class="s-circle sc-done">✅</div>
+            <div class="s-lbl">Sita</div>
+          </div>
+          <div class="streak-d">
+            <div class="s-circle sc-today">⭐</div>
+            <div class="s-lbl" style="color: var(--primary)">Leo</div>
+          </div>
+        </div>
+        <div class="sec-hdr">
+          <div class="sec-title">🏅 Badges Zangu</div>
+          <button class="see-all">Zote →</button>
+        </div>
+        <div class="badges-grid">
+          <div class="badge-card">
+            <div class="badge-em">⚡</div>
+            <div class="badge-nm">Fast Worker</div>
+            <div class="badge-dc">Saa 2</div>
+          </div>
+          <div class="badge-card">
+            <div class="badge-em">💯</div>
+            <div class="badge-nm">Reliable</div>
+            <div class="badge-dc">90% ukamilishaji</div>
+          </div>
+          <div class="badge-card">
+            <div class="badge-em">⭐</div>
+            <div class="badge-nm">Top Rated</div>
+            <div class="badge-dc">4.8+ rating</div>
+          </div>
+          <div class="badge-card">
+            <div class="badge-em">🔥</div>
+            <div class="badge-nm">On Fire</div>
+            <div class="badge-dc">Siku 7 mfululizo</div>
+          </div>
+          <div class="badge-card">
+            <div class="badge-em">💰</div>
+            <div class="badge-nm">Big Earner</div>
+            <div class="badge-dc">500k/mwezi</div>
+          </div>
+          <div class="badge-card locked">
+            <div class="badge-em">👑</div>
+            <div class="badge-nm">Elite Pro</div>
+            <div class="badge-dc">🔒 Level 10</div>
+          </div>
+          <div class="badge-card locked">
+            <div class="badge-em">🌟</div>
+            <div class="badge-nm">Legend</div>
+            <div class="badge-dc">🔒 100 kazi</div>
+          </div>
+          <div class="badge-card locked">
+            <div class="badge-em">🚀</div>
+            <div class="badge-nm">Rocket</div>
+            <div class="badge-dc">🔒 Level 9</div>
+          </div>
+        </div>
+        <div class="sec-hdr">
+          <div class="sec-title">🏆 Leaderboard ya Wiki</div>
+        </div>
+        <div class="lb-list">
+          <div
+            class="lb-row"
+            style="border: 1.5px solid rgba(251, 191, 36, 0.3)"
+          >
+            <div class="lb-rank gold">🥇</div>
+            <div class="lb-av">JM</div>
+            <div class="lb-info">
+              <div class="lb-name">Juma Mohamed</div>
+              <div class="lb-jobs">15 kazi · 🔥21 siku</div>
+            </div>
+            <div class="lb-earn">TSh 650k</div>
+          </div>
+          <div
+            class="lb-row"
+            style="border: 1.5px solid rgba(156, 163, 175, 0.3)"
+          >
+            <div class="lb-rank silver">🥈</div>
+            <div class="lb-av">AJ</div>
+            <div class="lb-info">
+              <div class="lb-name">Amina Juma (Wewe)</div>
+              <div class="lb-jobs">12 kazi · 🔥14 siku</div>
+            </div>
+            <div class="lb-earn">TSh 480k</div>
+          </div>
+          <div
+            class="lb-row"
+            style="border: 1.5px solid rgba(205, 127, 50, 0.3)"
+          >
+            <div class="lb-rank bronze">🥉</div>
+            <div class="lb-av">SK</div>
+            <div class="lb-info">
+              <div class="lb-name">Salim Kipande</div>
+              <div class="lb-jobs">11 kazi · 🔥7 siku</div>
+            </div>
+            <div class="lb-earn">TSh 420k</div>
+          </div>
+          <div class="lb-row">
+            <div class="lb-rank">4</div>
+            <div class="lb-av">FN</div>
+            <div class="lb-info">
+              <div class="lb-name">Fatuma Nkosi</div>
+              <div class="lb-jobs">9 kazi · 🔥5 siku</div>
+            </div>
+            <div class="lb-earn">TSh 380k</div>
+          </div>
+          <div class="lb-row">
+            <div class="lb-rank">5</div>
+            <div class="lb-av">BM</div>
+            <div class="lb-info">
+              <div class="lb-name">Baraka Mwamba</div>
+              <div class="lb-jobs">8 kazi · 🔥3 siku</div>
+            </div>
+            <div class="lb-earn">TSh 310k</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ POST JOB ══ -->
+      <div id="s-post" class="screen">
+        <div class="sec-hdr" style="margin-bottom: 14px">
+          <div class="sec-title">➕ Weka Kazi Mpya</div>
+        </div>
+        <div class="post-form">
+          <div class="form-g">
+            <label class="form-lbl">📌 Kichwa cha Kazi</label
+            ><input
+              class="form-inp"
+              type="text"
+              placeholder="e.g. Mjengo wa Bweni – Siku 5"
+            />
+          </div>
+          <div class="form-row">
+            <div class="form-g">
+              <label class="form-lbl">🏷️ Aina</label
+              ><select class="form-sel">
+                <option>🔨 Ujenzi</option>
+                <option>🧹 Usafi</option>
+                <option>🚛 Usafirishaji</option>
+                <option>🛒 Biashara</option>
+                <option>🍽️ Upishi</option>
+                <option>🏍️ Delivery</option>
+                <option>💻 Tech</option>
+              </select>
+            </div>
+            <div class="form-g">
+              <label class="form-lbl">🚨 Hali</label
+              ><select class="form-sel">
+                <option>🟢 Kawaida</option>
+                <option>🔴 Haraka</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-g">
+              <label class="form-lbl">📍 Mkoa</label
+              ><select class="form-sel">
+                <option>Dar es Salaam</option>
+                <option>Mwanza</option>
+                <option>Arusha</option>
+                <option>Dodoma</option>
+                <option>Mbeya</option>
+                <option>Tanga</option>
+              </select>
+            </div>
+            <div class="form-g">
+              <label class="form-lbl">🏘️ Wilaya/Mtaa</label
+              ><input
+                class="form-inp"
+                type="text"
+                placeholder="e.g. Kinondoni"
+              />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-g">
+              <label class="form-lbl">💰 Malipo (TSh)</label
+              ><input class="form-inp" type="number" placeholder="50000" />
+            </div>
+            <div class="form-g">
+              <label class="form-lbl">⏱️ Muda</label
+              ><select class="form-sel">
+                <option>Masaa 4</option>
+                <option>Masaa 8</option>
+                <option>Siku 2-3</option>
+                <option>Wiki moja</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-g">
+            <label class="form-lbl">📝 Maelezo ya Kazi</label
+            ><textarea
+              class="form-ta"
+              placeholder="Eleza kazi vizuri..."
+            ></textarea>
+          </div>
+          <div class="form-row">
+            <div class="form-g">
+              <label class="form-lbl">📞 Simu</label
+              ><input
+                class="form-inp"
+                type="tel"
+                placeholder="+255 7XX XXX XXX"
+              />
+            </div>
+            <div class="form-g">
+              <label class="form-lbl">💬 WhatsApp</label
+              ><input
+                class="form-inp"
+                type="tel"
+                placeholder="+255 7XX XXX XXX"
+              />
+            </div>
+          </div>
+          <button
+            class="btn-post"
+            onclick="showToast('✅ Kazi imewekwa! Itaonekana kwa wote.')"
+          >
+            🚀 Chapisha Kazi
+          </button>
+        </div>
+      </div>
+
+      <!-- ══ ADMIN ══ -->
+      <div id="s-admin" class="screen">
+        <div class="sec-hdr" style="margin-bottom: 14px">
+          <div class="sec-title">📊 Dashibodi ya Mwajiri</div>
+          <button class="see-all" onclick="showScreen('post')">
+            ➕ Kazi Mpya
+          </button>
+        </div>
+        <div class="admin-grid">
+          <div class="as-card">
+            <div class="as-icon">💼</div>
+            <div class="as-val">8</div>
+            <div class="as-lbl">Kazi Zilizowekwa</div>
+            <div class="as-trend tu">↑ +3 wiki hii</div>
+          </div>
+          <div class="as-card">
+            <div class="as-icon">👷</div>
+            <div class="as-val">34</div>
+            <div class="as-lbl">Waombaji Wote</div>
+            <div class="as-trend tu">↑ +12 leo</div>
+          </div>
+          <div class="as-card">
+            <div class="as-icon">✅</div>
+            <div class="as-val">6</div>
+            <div class="as-lbl">Zilizokamilika</div>
+            <div class="as-trend tu">↑ 75%</div>
+          </div>
+          <div class="as-card">
+            <div class="as-icon">💰</div>
+            <div class="as-val">TSh 480k</div>
+            <div class="as-lbl">Gharama Jumla</div>
+            <div class="as-trend td">↓ Chini bajeti</div>
+          </div>
+        </div>
+        <div class="sec-hdr"><div class="sec-title">👷 Waombaji</div></div>
+        <div class="app-list">
+          <div class="app-row">
+            <div class="ap-av">AJ</div>
+            <div class="ap-info">
+              <div class="ap-name">Amina Juma</div>
+              <div class="ap-meta">⭐ 4.9 · 89 kazi · Mjengo</div>
+            </div>
+            <div class="ap-score score-hi">87/100</div>
+            <button class="ap-btn ab-ph" onclick="showToast('📞 Inapiga...')">
+              📞
+            </button>
+          </div>
+          <div class="app-row">
+            <div class="ap-av">JM</div>
+            <div class="ap-info">
+              <div class="ap-name">Juma Msaki</div>
+              <div class="ap-meta">⭐ 4.7 · 52 kazi · Usafi</div>
+            </div>
+            <div class="ap-score score-hi">79/100</div>
+            <button
+              class="ap-btn ab-ok"
+              onclick="showToast('✅ Ameidhinishwa!')"
+            >
+              Idhinisha
+            </button>
+          </div>
+          <div class="app-row">
+            <div class="ap-av">FK</div>
+            <div class="ap-info">
+              <div class="ap-name">Fatuma Karim</div>
+              <div class="ap-meta">⭐ 4.5 · 28 kazi · Upishi</div>
+            </div>
+            <div class="ap-score score-md">65/100</div>
+            <button
+              class="ap-btn ab-ok"
+              onclick="showToast('✅ Ameidhinishwa!')"
+            >
+              Idhinisha
+            </button>
+          </div>
+          <div class="app-row">
+            <div class="ap-av">BW</div>
+            <div class="ap-info">
+              <div class="ap-name">Baraka Wambura</div>
+              <div class="ap-meta">⭐ 3.9 · 12 kazi · Delivery</div>
+            </div>
+            <div class="ap-score score-lo">42/100</div>
+            <button
+              class="ap-btn ab-vw"
+              onclick="showToast('👁️ Profaili inaonekana')"
+            >
+              Angalia
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end page-wrap -->
+
+    <!-- BOTTOM NAV -->
+    <div class="bnav">
+      <button
+        class="bnav-btn active"
+        id="bn-home"
+        onclick="
+          showScreen('home');
+          setBnav('home');
+        "
+      >
+        <span class="bi">🏠</span>Nyumbani
+      </button>
+      <button
+        class="bnav-btn"
+        id="bn-eneo"
+        onclick="
+          showScreen('eneo');
+          setBnav('eneo');
+        "
+      >
+        <span class="bi">📍</span>Eneo
+      </button>
+      <button
+        class="bnav-center"
+        onclick="
+          showScreen('post');
+          setBnav('post');
+        "
+      >
+        ➕
+      </button>
+      <button
+        class="bnav-btn"
+        id="bn-wallet"
+        onclick="
+          showScreen('wallet');
+          setBnav('wallet');
+        "
+      >
+        <span class="bi">💰</span>Pochi
+      </button>
+      <button
+        class="bnav-btn"
+        id="bn-profile"
+        onclick="
+          showScreen('profile');
+          setBnav('profile');
+        "
+      >
+        <span class="bi">👷</span>Mimi
+      </button>
+    </div>
+
+    <!-- MODAL -->
+    <div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
+      <div class="modal" onclick="event.stopPropagation()">
+        <div class="modal-handle"></div>
+        <div class="modal-title" id="m-title">Kazi</div>
+        <div class="modal-map-thumb">
+          <span id="m-icon" style="position: relative; z-index: 1">🔨</span>
+          <div class="modal-map-lbl" id="m-loc">📍 Kinondoni</div>
+        </div>
+        <div
+          style="
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 10px;
+          "
+        >
+          <div
+            class="emp-av"
+            style="width: 26px; height: 26px; font-size: 10px"
+          >
+            MK
+          </div>
+          <span style="font-size: 13px; font-weight: 600; color: var(--dark)"
+            >Mwajiri Aliyothibitishwa</span
+          >
+          <span>✔️</span><span class="stars">★★★★★</span>
+        </div>
+        <div class="modal-chips">
+          <div class="m-chip" id="m-dur">📅 Siku 3</div>
+          <div class="m-chip">📍 <span id="m-dist">0.5km</span></div>
+          <div class="m-chip">⏱️ Inaanza Leo</div>
+          <div
+            class="m-chip"
+            style="background: rgba(0, 200, 83, 0.1); color: var(--accent)"
+          >
+            🟢 Wazi
+          </div>
+        </div>
+        <div class="modal-pay">
+          <span id="m-pay">TSh 80,000</span> <span>/ siku</span>
+        </div>
+        <div class="modal-desc">
+          Tunahitaji mfanyakazi mwenye ujuzi. Zana zote zinatolewa na mwajiri.
+          Malipo yanafanywa kila siku mwishoni mwa kazi. Fika mapema asubuhi.
+        </div>
+        <div class="modal-ai-tip">
+          <span style="font-size: 18px">🤖</span
+          ><span>AI: Kazi hii inafanana 92% na ujuzi wako!</span>
+        </div>
+        <div class="modal-acts">
+          <button
+            class="m-btn mb-p"
+            onclick="
+              showToast('✅ Umeomba kazi!');
+              closeModal();
+            "
+          >
+            ✅ Omba Kazi
+          </button>
+          <button
+            class="m-btn mb-g"
+            onclick="showToast('💬 WhatsApp inafungua...')"
+          >
+            💬 WhatsApp
+          </button>
+          <button class="m-btn mb-o" onclick="showToast('📞 Inapiga simu...')">
+            📞 Simu
+          </button>
+          <button class="m-btn mb-r" onclick="showToast('🚩 Imeripootiwa.')">
+            🚩 Ripoti
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- TOAST -->
+    <div class="toast" id="toast">✅ Imefanywa</div>
+
+    <script>
+      /* ═══════════════════════════════════════════
+   DATA – MIKOA, WILAYA, MITAA, KAZI
+═══════════════════════════════════════════ */
+      const DATA = {
+        "Dar es Salaam": {
+          icon: "🏙️",
+          jobs: 156,
+          wilaya: {
+            Kinondoni: {
+              icon: "🏘️",
+              jobs: 52,
+              mitaa: {
+                Sinza: {
+                  icon: "🏡",
+                  jobs: 8,
+                  kazi: [
+                    {
+                      t: "Kupiga Rangi",
+                      p: "TSh 60,000",
+                      d: "Siku 3",
+                      i: "🎨",
+                      s: "open",
+                    },
+                    {
+                      t: "Mjengo Kidogo",
+                      p: "TSh 45,000",
+                      d: "Siku 2",
+                      i: "🔨",
+                      s: "open",
+                    },
+                  ],
+                },
+                Mwenge: {
+                  icon: "🏡",
+                  jobs: 6,
+                  kazi: [
+                    {
+                      t: "Msaada wa Duka",
+                      p: "TSh 25,000",
+                      d: "Siku 5",
+                      i: "🛒",
+                      s: "open",
+                    },
+                    {
+                      t: "Dereva Pikipiki",
+                      p: "TSh 40,000",
+                      d: "Siku 1",
+                      i: "🏍️",
+                      s: "urgent",
+                    },
+                  ],
+                },
+                Mikocheni: {
+                  icon: "🏡",
+                  jobs: 5,
+                  kazi: [
+                    {
+                      t: "Upishi Mkutano",
+                      p: "TSh 35,000",
+                      d: "Masaa 6",
+                      i: "🍳",
+                      s: "open",
+                    },
+                    {
+                      t: "Usafi Ofisi",
+                      p: "TSh 20,000",
+                      d: "Masaa 4",
+                      i: "🧹",
+                      s: "open",
+                    },
+                  ],
+                },
+                Kijitonyama: {
+                  icon: "🏡",
+                  jobs: 4,
+                  kazi: [
+                    {
+                      t: "Mlinzi wa Usiku",
+                      p: "TSh 30,000",
+                      d: "Siku 1",
+                      i: "🔒",
+                      s: "urgent",
+                    },
+                  ],
+                },
+                Mwananyamala: {
+                  icon: "🏡",
+                  jobs: 7,
+                  kazi: [
+                    {
+                      t: "Kujenga Ukuta",
+                      p: "TSh 55,000",
+                      d: "Siku 4",
+                      i: "🧱",
+                      s: "open",
+                    },
+                  ],
+                },
+              },
+            },
+            Ilala: {
+              icon: "🏘️",
+              jobs: 48,
+              mitaa: {
+                Kariakoo: {
+                  icon: "🏡",
+                  jobs: 12,
+                  kazi: [
+                    {
+                      t: "Msaidizi Duka la Simu",
+                      p: "TSh 30,000",
+                      d: "Masaa 8",
+                      i: "📱",
+                      s: "open",
+                    },
+                    {
+                      t: "Kupiga Picha",
+                      p: "TSh 50,000",
+                      d: "Siku 2",
+                      i: "📷",
+                      s: "open",
+                    },
+                    {
+                      t: "Kuuza Bidhaa",
+                      p: "TSh 22,000",
+                      d: "Siku 5",
+                      i: "🛒",
+                      s: "open",
+                    },
+                  ],
+                },
+                Buguruni: {
+                  icon: "🏡",
+                  jobs: 9,
+                  kazi: [
+                    {
+                      t: "Mpishi wa Sherehe",
+                      p: "TSh 45,000",
+                      d: "Siku 1",
+                      i: "🍽️",
+                      s: "urgent",
+                    },
+                  ],
+                },
+                Tabata: {
+                  icon: "🏡",
+                  jobs: 8,
+                  kazi: [
+                    {
+                      t: "Usafi wa Nyumba",
+                      p: "TSh 25,000",
+                      d: "Masaa 5",
+                      i: "🧹",
+                      s: "open",
+                    },
+                    {
+                      t: "Mjengo wa Sakafu",
+                      p: "TSh 70,000",
+                      d: "Siku 3",
+                      i: "🔨",
+                      s: "open",
+                    },
+                  ],
+                },
+                Gerezani: {
+                  icon: "🏡",
+                  jobs: 6,
+                  kazi: [
+                    {
+                      t: "Mhusika wa Gari",
+                      p: "TSh 35,000",
+                      d: "Siku 1",
+                      i: "🚗",
+                      s: "open",
+                    },
+                  ],
+                },
+                Upanga: {
+                  icon: "🏡",
+                  jobs: 7,
+                  kazi: [
+                    {
+                      t: "Usafi wa Ofisi",
+                      p: "TSh 25,000",
+                      d: "Masaa 4",
+                      i: "🧹",
+                      s: "open",
+                    },
+                  ],
+                },
+              },
+            },
+            Temeke: {
+              icon: "🏘️",
+              jobs: 40,
+              mitaa: {
+                Temeke: {
+                  icon: "🏡",
+                  jobs: 10,
+                  kazi: [
+                    {
+                      t: "Kupakua Malori",
+                      p: "TSh 45,000",
+                      d: "Siku 1",
+                      i: "🚛",
+                      s: "urgent",
+                    },
+                    {
+                      t: "Msaada Bandarini",
+                      p: "TSh 60,000",
+                      d: "Siku 2",
+                      i: "⚓",
+                      s: "open",
+                    },
+                  ],
+                },
+                Mbagala: {
+                  icon: "🏡",
+                  jobs: 8,
+                  kazi: [
+                    {
+                      t: "Kutengeneza Fanicha",
+                      p: "TSh 55,000",
+                      d: "Siku 3",
+                      i: "🪑",
+                      s: "open",
+                    },
+                  ],
+                },
+                Sandali: {
+                  icon: "🏡",
+                  jobs: 6,
+                  kazi: [
+                    {
+                      t: "Bomba la Maji",
+                      p: "TSh 80,000",
+                      d: "Siku 3",
+                      i: "🔧",
+                      s: "urgent",
+                    },
+                  ],
+                },
+                Manzese: {
+                  icon: "🏡",
+                  jobs: 9,
+                  kazi: [
+                    {
+                      t: "Mjengo – Bomba la Maji",
+                      p: "TSh 80,000",
+                      d: "Siku 3",
+                      i: "🔨",
+                      s: "urgent",
+                    },
+                    {
+                      t: "Ujenzi Barabara Ndogo",
+                      p: "TSh 60,000",
+                      d: "Siku 5",
+                      i: "🛣️",
+                      s: "open",
+                    },
+                  ],
+                },
+                "Chang'ombe": {
+                  icon: "🏡",
+                  jobs: 7,
+                  kazi: [
+                    {
+                      t: "Dereva Delivery",
+                      p: "TSh 45,000",
+                      d: "Siku 1",
+                      i: "🏍️",
+                      s: "open",
+                    },
+                  ],
+                },
+              },
+            },
+            Ubungo: {
+              icon: "🏘️",
+              jobs: 35,
+              mitaa: {
+                Ubungo: {
+                  icon: "🏡",
+                  jobs: 10,
+                  kazi: [
+                    {
+                      t: "Msaada Tech",
+                      p: "TSh 40,000",
+                      d: "Siku 3",
+                      i: "💻",
+                      s: "open",
+                    },
+                  ],
+                },
+                Kimara: {
+                  icon: "🏡",
+                  jobs: 7,
+                  kazi: [
+                    {
+                      t: "Mpishi wa Harusi",
+                      p: "TSh 70,000",
+                      d: "Siku 2",
+                      i: "🍽️",
+                      s: "open",
+                    },
+                  ],
+                },
+                Kibamba: {
+                  icon: "🏡",
+                  jobs: 5,
+                  kazi: [
+                    {
+                      t: "Kulima Shamba",
+                      p: "TSh 30,000",
+                      d: "Siku 3",
+                      i: "🌱",
+                      s: "open",
+                    },
+                  ],
+                },
+                Saranga: {
+                  icon: "🏡",
+                  jobs: 6,
+                  kazi: [
+                    {
+                      t: "Mlinzi wa Nyumba",
+                      p: "TSh 25,000",
+                      d: "Siku 7",
+                      i: "🔒",
+                      s: "open",
+                    },
+                  ],
+                },
+              },
+            },
+          },
+        },
+        Mwanza: {
+          icon: "🐟",
+          jobs: 89,
+          wilaya: {
+            Ilemela: {
+              icon: "🏘️",
+              jobs: 28,
+              mitaa: {
+                Ilemela: {
+                  icon: "🏡",
+                  jobs: 8,
+                  kazi: [
+                    {
+                      t: "Kupiga Rangi",
+                      p: "TSh 40,000",
+                      d: "Siku 2",
+                      i: "🎨",
+                      s: "open",
+                    },
+                  ],
+                },
+                Mkuyuni: {
+                  icon: "🏡",
+                  jobs: 7,
+                  kazi: [
+                    {
+                      t: "Uvuvi Msaada",
+                      p: "TSh 30,000",
+                      d: "Siku 5",
+                      i: "🎣",
+                      s: "open",
+                    },
+                  ],
+                },
+                Buhongwa: {
+                  icon: "🏡",
+                  jobs: 6,
+                  kazi: [
+                    {
+                      t: "Mjengo wa Godown",
+                      p: "TSh 65,000",
+                      d: "Siku 7",
+                      i: "🔨",
+                      s: "urgent",
+                    },
+                  ],
+                },
+              },
+            },
+            Nyamagana: {
+              icon: "🏘️",
+              jobs: 25,
+              mitaa: {
+                Kisesa: {
+                  icon: "🏡",
+                  jobs: 8,
+                  kazi: [
+                    {
+                      t: "Msaada Soko",
+                      p: "TSh 20,000",
+                      d: "Siku 3",
+                      i: "🛒",
+                      s: "open",
+                    },
+                  ],
+                },
+                Mirongo: {
+                  icon: "🏡",
+                  jobs: 5,
+                  kazi: [
+                    {
+                      t: "Dereva wa Gari",
+                      p: "TSh 50,000",
+                      d: "Siku 1",
+                      i: "🚗",
+                      s: "open",
+                    },
+                  ],
+                },
+              },
+            },
+            Magu: {
+              icon: "🏘️",
+              jobs: 20,
+              mitaa: {
+                Magu: {
+                  icon: "🏡",
+                  jobs: 10,
+                  kazi: [
+                    {
+                      t: "Kulima Pamba",
+                      p: "TSh 25,000",
+                      d: "Siku 14",
+                      i: "🌿",
+                      s: "open",
+                    },
+                  ],
+                },
+                "Ng'hangabali": {
+                  icon: "🏡",
+                  jobs: 6,
+                  kazi: [
+                    {
+                      t: "Msaada Maji",
+                      p: "TSh 30,000",
+                      d: "Siku 2",
+                      i: "💧",
+                      s: "open",
+                    },
+                  ],
+                },
+              },
+            },
+          },
+        },
+        Arusha: {
+          icon: "🏔️",
+          jobs: 72,
+          wilaya: {
+            "Arusha Mjini": {
+              icon: "🏘️",
+              jobs: 32,
+              mitaa: {
+                Sakina: {
+                  icon: "🏡",
+                  jobs: 9,
+                  kazi: [
+                    {
+                      t: "Msaada Hoteli",
+                      p: "TSh 35,000",
+                      d: "Siku 3",
+                      i: "🏨",
+                      s: "open",
+                    },
+                  ],
+                },
+                Kimandolu: {
+                  icon: "🏡",
+                  jobs: 7,
+                  kazi: [
+                    {
+                      t: "Mlinzi wa Hoteli",
+                      p: "TSh 30,000",
+                      d: "Siku 7",
+                      i: "🔒",
+                      s: "open",
+                    },
+                  ],
+                },
+                Kaloleni: {
+                  icon: "🏡",
+                  jobs: 8,
+                  kazi: [
+                    {
+                      t: "Kupiga Picha Watalii",
+                      p: "TSh 80,000",
+                      d: "Siku 2",
+                      i: "📷",
+                      s: "open",
+                    },
+                  ],
+                },
+              },
+            },
+            Arumeru: {
+              icon: "🏘️",
+              jobs: 28,
+              mitaa: {
+                Tengeru: {
+                  icon: "🏡",
+                  jobs: 10,
+                  kazi: [
+                    {
+                      t: "Kulima Kahawa",
+                      p: "TSh 25,000",
+                      d: "Siku 10",
+                      i: "☕",
+                      s: "open",
+                    },
+                  ],
+                },
+                Moshono: {
+                  icon: "🏡",
+                  jobs: 8,
+                  kazi: [
+                    {
+                      t: "Mjengo wa Shamba",
+                      p: "TSh 45,000",
+                      d: "Siku 4",
+                      i: "🌿",
+                      s: "open",
+                    },
+                  ],
+                },
+              },
+            },
+          },
+        },
+        Dodoma: {
+          icon: "🏛️",
+          jobs: 54,
+          wilaya: {
+            "Dodoma Mjini": {
+              icon: "🏘️",
+              jobs: 22,
+              mitaa: {
+                Kikuyu: {
+                  icon: "🏡",
+                  jobs: 8,
+                  kazi: [
+                    {
+                      t: "Msaada Ofisi ya Serikali",
+                      p: "TSh 40,000",
+                      d: "Siku 5",
+                      i: "🏛️",
+                      s: "open",
+                    },
+                  ],
+                },
+                "Chang'ombe": {
+                  icon: "🏡",
+                  jobs: 7,
+                  kazi: [
+                    {
+                      t: "Mjengo wa Jengo",
+                      p: "TSh 65,000",
+                      d: "Siku 7",
+                      i: "🔨",
+                      s: "urgent",
+                    },
+                  ],
+                },
+              },
+            },
+            Bahi: {
+              icon: "🏘️",
+              jobs: 16,
+              mitaa: {
+                Bahi: {
+                  icon: "🏡",
+                  jobs: 10,
+                  kazi: [
+                    {
+                      t: "Kulima Alizeti",
+                      p: "TSh 20,000",
+                      d: "Siku 14",
+                      i: "🌻",
+                      s: "open",
+                    },
+                  ],
+                },
+              },
+            },
+          },
+        },
+        Mbeya: {
+          icon: "🌄",
+          jobs: 61,
+          wilaya: {
+            "Mbeya Mjini": {
+              icon: "🏘️",
+              jobs: 25,
+              mitaa: {
+                Mwanjelwa: {
+                  icon: "🏡",
+                  jobs: 9,
+                  kazi: [
+                    {
+                      t: "Msaada Soko Mkuu",
+                      p: "TSh 22,000",
+                      d: "Siku 3",
+                      i: "🛒",
+                      s: "open",
+                    },
+                  ],
+                },
+                Uyole: {
+                  icon: "🏡",
+                  jobs: 7,
+                  kazi: [
+                    {
+                      t: "Mjengo wa Barabara",
+                      p: "TSh 55,000",
+                      d: "Siku 5",
+                      i: "🛣️",
+                      s: "urgent",
+                    },
+                  ],
+                },
+              },
+            },
+            Mbarali: {
+              icon: "🏘️",
+              jobs: 20,
+              mitaa: {
+                Rujewa: {
+                  icon: "🏡",
+                  jobs: 10,
+                  kazi: [
+                    {
+                      t: "Kulima Mchele",
+                      p: "TSh 28,000",
+                      d: "Siku 14",
+                      i: "🌾",
+                      s: "open",
+                    },
+                  ],
+                },
+              },
+            },
+          },
+        },
+        Tanga: {
+          icon: "🌊",
+          jobs: 48,
+          wilaya: {
+            "Tanga Mjini": {
+              icon: "🏘️",
+              jobs: 20,
+              mitaa: {
+                Nguvumali: {
+                  icon: "🏡",
+                  jobs: 7,
+                  kazi: [
+                    {
+                      t: "Msaada Bandari",
+                      p: "TSh 45,000",
+                      d: "Siku 2",
+                      i: "⚓",
+                      s: "open",
+                    },
+                  ],
+                },
+                Usagara: {
+                  icon: "🏡",
+                  jobs: 6,
+                  kazi: [
+                    {
+                      t: "Kupiga Rangi Nyumba",
+                      p: "TSh 40,000",
+                      d: "Siku 3",
+                      i: "🎨",
+                      s: "open",
+                    },
+                  ],
+                },
+              },
+            },
+            Muheza: {
+              icon: "🏘️",
+              jobs: 16,
+              mitaa: {
+                Muheza: {
+                  icon: "🏡",
+                  jobs: 10,
+                  kazi: [
+                    {
+                      t: "Kulima Chai",
+                      p: "TSh 22,000",
+                      d: "Siku 7",
+                      i: "🌿",
+                      s: "open",
+                    },
+                  ],
+                },
+              },
+            },
+          },
+        },
+        Morogoro: {
+          icon: "🌿",
+          jobs: 43,
+          wilaya: {
+            "Morogoro Mjini": {
+              icon: "🏘️",
+              jobs: 18,
+              mitaa: {
+                "Mji Mkuu": {
+                  icon: "🏡",
+                  jobs: 8,
+                  kazi: [
+                    {
+                      t: "Mlinzi wa Ghala",
+                      p: "TSh 28,000",
+                      d: "Siku 7",
+                      i: "🔒",
+                      s: "open",
+                    },
+                  ],
+                },
+                Kihonda: {
+                  icon: "🏡",
+                  jobs: 6,
+                  kazi: [
+                    {
+                      t: "Msaada Hospitali",
+                      p: "TSh 35,000",
+                      d: "Siku 5",
+                      i: "🏥",
+                      s: "open",
+                    },
+                  ],
+                },
+              },
+            },
+          },
+        },
+        Zanzibar: {
+          icon: "🌴",
+          jobs: 38,
+          wilaya: {
+            "Unguja Kaskazini": {
+              icon: "🏘️",
+              jobs: 15,
+              mitaa: {
+                Matemwe: {
+                  icon: "🏡",
+                  jobs: 7,
+                  kazi: [
+                    {
+                      t: "Msaada wa Hoteli",
+                      p: "TSh 40,000",
+                      d: "Siku 3",
+                      i: "🏨",
+                      s: "open",
+                    },
+                    {
+                      t: "Kupiga Picha",
+                      p: "TSh 70,000",
+                      d: "Siku 1",
+                      i: "📷",
+                      s: "open",
+                    },
+                  ],
+                },
+                Nungwi: {
+                  icon: "🏡",
+                  jobs: 8,
+                  kazi: [
+                    {
+                      t: "Mwongozo Watalii",
+                      p: "TSh 60,000",
+                      d: "Siku 2",
+                      i: "🗺️",
+                      s: "open",
+                    },
+                  ],
+                },
+              },
+            },
+            "Unguja Kusini": {
+              icon: "🏘️",
+              jobs: 12,
+              mitaa: {
+                Jambiani: {
+                  icon: "🏡",
+                  jobs: 7,
+                  kazi: [
+                    {
+                      t: "Ulinzi Pwani",
+                      p: "TSh 30,000",
+                      d: "Siku 7",
+                      i: "🌊",
+                      s: "open",
+                    },
+                  ],
+                },
+              },
+            },
+          },
+        },
+      };
+
+      /* ═══ ENEO STATE ═══ */
+      let eneoLevel = 0; // 0=mikoa, 1=wilaya, 2=mitaa, 3=kazi
+      let selMkoa = null,
+        selWilaya = null,
+        selMtaa = null;
+
+      function renderEneo() {
+        const grid = document.getElementById("eneo-grid");
+        const title = document.getElementById("eneo-level-title");
+        const backBtn = document.getElementById("eneo-back");
+        const bc = document.getElementById("breadcrumb");
+        const jobsDiv = document.getElementById("eneo-jobs");
+        jobsDiv.style.display = "none";
+        grid.style.display = "grid";
+
+        // Breadcrumb
+        let bcHtml = `<span class="bc-item ${eneoLevel === 0 ? "active" : ""}" onclick="eneoBc(0)">🇹🇿 Mikoa</span>`;
+        if (selMkoa)
+          bcHtml += `<span class="bc-sep">›</span><span class="bc-item ${eneoLevel === 1 ? "active" : ""}" onclick="eneoBc(1)">${DATA[selMkoa].icon} ${selMkoa}</span>`;
+        if (selWilaya)
+          bcHtml += `<span class="bc-sep">›</span><span class="bc-item ${eneoLevel === 2 ? "active" : ""}" onclick="eneoBc(2)">🏘️ ${selWilaya}</span>`;
+        if (selMtaa)
+          bcHtml += `<span class="bc-sep">›</span><span class="bc-item active">🏡 ${selMtaa}</span>`;
+        bc.innerHTML = bcHtml;
+
+        backBtn.style.display = eneoLevel > 0 ? "flex" : "none";
+
+        if (eneoLevel === 0) {
+          title.textContent = "🇹🇿 Chagua Mkoa";
+          let html = "";
+          Object.entries(DATA).forEach(([mkoa, d]) => {
+            html += `<div class="eneo-card" onclick="selectMkoa('${mkoa}')">
+        <div class="eneo-card-icon">${d.icon}</div>
+        <div class="eneo-card-info"><div class="eneo-card-name">${mkoa}</div><div class="eneo-card-count">Kazi ${d.jobs}</div></div>
+        <div class="eneo-card-arrow">›</div>
+      </div>`;
+          });
+          grid.innerHTML = html;
+        } else if (eneoLevel === 1) {
+          title.textContent = `${DATA[selMkoa].icon} Wilaya za ${selMkoa}`;
+          const wilaya = DATA[selMkoa].wilaya;
+          let html = "";
+          Object.entries(wilaya).forEach(([w, d]) => {
+            html += `<div class="eneo-card" onclick="selectWilaya('${w}')">
+        <div class="eneo-card-icon">${d.icon}</div>
+        <div class="eneo-card-info"><div class="eneo-card-name">${w}</div><div class="eneo-card-count">Kazi ${d.jobs}</div></div>
+        <div class="eneo-card-arrow">›</div>
+      </div>`;
+          });
+          grid.innerHTML = html;
+        } else if (eneoLevel === 2) {
+          title.textContent = `🏘️ Mitaa ya ${selWilaya}`;
+          const mitaa = DATA[selMkoa].wilaya[selWilaya].mitaa;
+          let html = "";
+          Object.entries(mitaa).forEach(([m, d]) => {
+            html += `<div class="eneo-card" onclick="selectMtaa('${m}')">
+        <div class="eneo-card-icon">${d.icon}</div>
+        <div class="eneo-card-info"><div class="eneo-card-name">${m}</div><div class="eneo-card-count">Kazi ${d.jobs}</div></div>
+        <div class="eneo-card-arrow">›</div>
+      </div>`;
+          });
+          grid.innerHTML = html;
+        } else if (eneoLevel === 3) {
+          grid.style.display = "none";
+          title.textContent = `🏡 ${selMtaa} – Kazi Zinapatikana`;
+          const kazi = DATA[selMkoa].wilaya[selWilaya].mitaa[selMtaa].kazi;
+          document.getElementById("eneo-jobs-title").textContent =
+            `💼 Kazi ${kazi.length} – ${selMtaa}, ${selWilaya}`;
+          const list = document.getElementById("eneo-jobs-list");
+          let html = "";
+          kazi.forEach((k) => {
+            const isUrg = k.s === "urgent";
+            html += `<div class="job-card ${isUrg ? "urg" : ""}" onclick="openModal('${k.t}','${selMtaa}','${k.p}','${k.d}','${k.i}')">
+        ${isUrg ? '<div class="urg-ribbon">🔴 HARAKA</div>' : ""}
+        <div class="jc-top">
+          <div class="jc-icon">${k.i}</div>
+          <div class="jc-head">
+            <div class="jc-title">${k.t}</div>
+            <div class="jc-emp"><div class="emp-av">MJ</div><span>Mwajiri wa ${selMtaa}</span><span>✔️</span><span class="stars">★★★★☆</span></div>
+          </div>
+          <span class="status-pill ${isUrg ? "sp-urg" : "sp-open"}">${isUrg ? "🔴 Haraka" : "🟢 Wazi"}</span>
+        </div>
+        <div class="jc-meta">
+          <div class="jc-chip">📍 ${selMtaa} · ${(Math.random() * 3 + 0.3).toFixed(1)}km</div>
+          <div class="jc-chip">📅 ${k.d}</div>
+        </div>
+        <div class="jc-pay">${k.p} <span>/ kazi</span></div>
+        <div class="jc-actions">
+          <button class="btn-apply" onclick="event.stopPropagation();openModal('${k.t}','${selMtaa}','${k.p}','${k.d}','${k.i}')">Omba Kazi</button>
+          <button class="btn-ico" onclick="event.stopPropagation();showToast('📞 Inapiga simu...')">📞</button>
+          <button class="btn-ico btn-wa" onclick="event.stopPropagation();showToast('💬 WhatsApp inafungua...')">💬</button>
+        </div>
+      </div>`;
+          });
+          list.innerHTML = html;
+          jobsDiv.style.display = "block";
+        }
+      }
+
+      function selectMkoa(m) {
+        selMkoa = m;
+        eneoLevel = 1;
+        renderEneo();
+      }
+      function selectWilaya(w) {
+        selWilaya = w;
+        eneoLevel = 2;
+        renderEneo();
+      }
+      function selectMtaa(m) {
+        selMtaa = m;
+        eneoLevel = 3;
+        renderEneo();
+        showToast(`📍 ${m} – Kazi zinaonekana!`);
+      }
+      function eneoBc(level) {
+        eneoLevel = level;
+        if (level === 0) {
+          selMkoa = null;
+          selWilaya = null;
+          selMtaa = null;
+        } else if (level === 1) {
+          selWilaya = null;
+          selMtaa = null;
+        } else if (level === 2) {
+          selMtaa = null;
+        }
+        renderEneo();
+      }
+      function eneoBack() {
+        eneoLevel = Math.max(0, eneoLevel - 1);
+        if (eneoLevel === 0) {
+          selMkoa = null;
+          selWilaya = null;
+          selMtaa = null;
+        } else if (eneoLevel === 1) {
+          selWilaya = null;
+          selMtaa = null;
+        } else if (eneoLevel === 2) {
+          selMtaa = null;
+        }
+        renderEneo();
+      }
+
+      /* ═══ SCREEN MANAGER ═══ */
+      function showScreen(name) {
+        document
+          .querySelectorAll(".screen")
+          .forEach((s) => s.classList.remove("active"));
+        const el = document.getElementById("s-" + name);
+        if (el) el.classList.add("active");
+        if (name === "wallet") buildChart();
+        if (name === "eneo") renderEneo();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+
+      function setBnav(name) {
+        document
+          .querySelectorAll(".bnav-btn")
+          .forEach((b) => b.classList.remove("active"));
+        const el = document.getElementById("bn-" + name);
+        if (el) el.classList.add("active");
+      }
+
+      /* ═══ FILTER TABS ═══ */
+      function setTab(el) {
+        el.closest(".ftabs")
+          .querySelectorAll(".ftab")
+          .forEach((t) => t.classList.remove("active"));
+        el.classList.add("active");
+        showToast("🔍 Inafilter kazi...");
+      }
+
+      /* ═══ TOAST ═══ */
+      let toastTimer;
+      function showToast(msg) {
+        const t = document.getElementById("toast");
+        t.textContent = msg;
+        t.classList.add("show");
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => t.classList.remove("show"), 2600);
+      }
+
+      /* ═══ MODAL ═══ */
+      function openModal(title, location, pay, duration, icon) {
+        document.getElementById("m-title").textContent = title;
+        document.getElementById("m-loc").textContent = "📍 " + location;
+        document.getElementById("m-pay").textContent = pay;
+        document.getElementById("m-dur").textContent = "📅 " + duration;
+        document.getElementById("m-icon").textContent = icon;
+        document.getElementById("m-dist").textContent =
+          (Math.random() * 4 + 0.3).toFixed(1) + "km";
+        document.getElementById("modal-overlay").classList.add("active");
+        document.body.style.overflow = "hidden";
+      }
+      function closeModal(e) {
+        if (!e || e.target === document.getElementById("modal-overlay")) {
+          document.getElementById("modal-overlay").classList.remove("active");
+          document.body.style.overflow = "";
+        }
+      }
+
+      /* ═══ EARNINGS CHART ═══ */
+      function buildChart() {
+        const c = document.getElementById("chart-bars");
+        if (!c || c.children.length > 0) return;
+        const days = ["Jum", "Mos", "Jua", "Cha", "Alh", "Iju", "Jum"];
+        const vals = [30000, 80000, 25000, 60000, 0, 55000, 80000];
+        const max = Math.max(...vals);
+        c.innerHTML = "";
+        days.forEach((d, i) => {
+          const h = vals[i] ? Math.max((vals[i] / max) * 82, 6) : 4;
+          const wrap = document.createElement("div");
+          wrap.className = "chart-bw";
+          const bar = document.createElement("div");
+          bar.className =
+            "chart-b " + (i === days.length - 1 ? "cb-g" : "cb-b");
+          bar.style.cssText = `height:${h}px;transition:height .8s ${i * 0.07}s;`;
+          bar.title = "TSh " + vals[i].toLocaleString();
+          const lbl = document.createElement("div");
+          lbl.className = "chart-d";
+          lbl.textContent = d;
+          wrap.appendChild(bar);
+          wrap.appendChild(lbl);
+          c.appendChild(wrap);
+        });
+      }
+
+      /* ═══ INIT ═══ */
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape")
+          closeModal({ target: document.getElementById("modal-overlay") });
+      });
+    </script>
+  </body>
+</html>
